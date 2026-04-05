@@ -1,0 +1,96 @@
+Scope and Requirements
+
+1. Mục tiêu
+- Tài liệu này dùng để xác định phạm vi và yêu cầu đầu ra của dự án
+- Tài liệu được áp dụng cho phiên bản đầu tiên của dự án
+
+2. Phạm vi
+2.1. Những việc cần làm cho phiên bản hiện tại:
+- Auth:
+  + Đăng nhập
+  + Đăng kí tài khoản
+  + Đăng xuất
+  + Quên mật khẩu
+- Account:
+  + Xem thông tin tài khoản
+  + Xóa tài khoản
+  + Chỉnh sửa thông tin tài khoản
+  + Đổi mật khẩu
+- To do List
+  + Tạo công việc
+  + Xóa công việc
+  + Xem danh sách công việc
+  + Xem trạng thái công việc
+  + Xóa công việc
+  + Chỉnh sửa công công việc
+  + Chuyển trạng thái công việc
+  + Tạo nhóm công việc
+  + Tùy chỉnh thông tin nhóm công việc
+  + Xóa nhóm công việc
+  + Phân cụm công việc trong 1 nhóm công việc
+- Pomodoro
+  + Bấm giờ
+  + Ghi lại thời gian đã bấm của một ngày
+  + Xem lịch sử
+  + Thống kê thời gian
+2.2. Những việc cho phiên bản tiếp theo
+- Bạn bè
+  + Kết bạn
+  + Tìm kiếm bạn bè
+  + Xem danh sách bạn bè
+  + Xếp hạng bạn bè
+  + Xóa bạn bè
+2.3. Những việc phát triển sau:
+- Cộng động:
+  + Tạo cộng đồng
+  + Tham gia cộng đồng
+  + Xếp hạng cộng đồng
+  + Xếp hạng các thành viên trong 1 cộng đồng
+  + Rời cộng đồng
+  + Đăng bài viết ở cộng đồng
+- Bài viết:
+  + Tạo bài viết (chỉ có text)
+  + Tương tác với bài viết: reaction, comment, share
+  + Xóa bài viết
+  + Báo cáo bài viết
+- Auth:
+  + Đăng nhập/ đăng kí bằng facebook
+  + Đăng nhập/ đăng kí bằng google
+
+3. Yêu cầu chức năng
+- FR-01. Hệ thống phải cho phép người dùng đăng nhập
+- FR-02. Người dùng có thể đăng kí
+ vào hệ thống
+- FR-03. Hệ thống phải hiển thị lỗi rõ ràng cho người dùng nếu thông tin đầu vào sai trong quá trình 
+đăng nhập/ đăng kí
+- FR-04. Hệ thống gửi email xác nhận đến email của người dùng khi có yêu cầu Quên mật khẩu
+- FR-05. Người dùng có thể cập nhật mật khẩu mới nếu họ nhập mã xác nhận hợp lệ
+- FR-06. Người dùng có thể đăng xuất khỏi hệ thống
+- FR-07. Người dùng có thể tạo công việc mới
+- FR-08. Người dùng có thể xem trạng thái của một công việc cụ thể
+- FR-09. Người dùng có thể tùy chỉnh trạng thái của một hoặc nhiều công việc
+- FR-10. Người dùng có thể xóa 1 hoặc nhiều công việc
+- FR-11. Người dùng có thể tạo nhóm công việc
+- FR-12. Người dùng có thể tùy chỉnh thông cho nhóm công việc khi tạo
+- FR-13. Người dùng có thể chỉnh sửa thông tin của nhóm công việc
+- FR-14. Người dùng có thể xóa 1 hoặc nhiều nhóm công việc
+- FR-15. Người dùng có thể chỉnh sửa thông tin của công việc
+- FR-16. Người dùng có thể phân cụm các công việc trong 1 nhóm công việc
+- FR-17. Người dùng có thể xem danh sách công việc
+- FR-18. Người dùng có thể xem trạng thái công việc
+- FR-19. Người dùng có thể xem thông tin tài khoản của chính mình
+- FR-20. Người dùng có thể yêu cầu xóa tài khoản
+- FR-21. Hệ thống gửi mã xác nhận xóa tài khoản về email người dùng nếu người dùng có yêu cầu
+- FR-22. Người dùng có thể xóa tài khoản nếu nhập đúng mã xác nhận xóa tài khoản
+- FR-23. Người dùng có thể chỉnh sửa thông tin tài khoản
+- FR-24. Người dùng có thể đổi mật khẩu
+- FR-25. Người dùng có thể bấm giờ, tạm dừng và dừng hẳn quá trình
+- FR-26. Hệ thống ghi lại tổng thời gian đã bấm của ngày
+- FR-27. Người dùng có thể xem lịch sử bấm giờ của mình
+- FR-28. Người dùng có thể xem thống kê thời gian đã bấm của từng ngày
+4. Yêu cầu phi chức năng
+5. Ràng bược và giả đinẹ
+6. Tiêu chí hoàn thành
+7. Validation Rules
+8. Các tác nhân
+9. Các phụ thuộc bên ngoài
