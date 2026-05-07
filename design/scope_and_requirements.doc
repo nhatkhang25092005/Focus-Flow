@@ -14,10 +14,12 @@ Scope and Requirements
 - Account:
   + Xem thông tin tài khoản
   + Xóa tài khoản
+  + Chỉnh sửa ảnh đại diện
   + Chỉnh sửa thông tin tài khoản
   + Đổi mật khẩu
 - To do List
   + Tạo công việc
+  + Tạo mô tả công việc
   + Xóa công việc
   + Xem danh sách công việc
   + Xem trạng thái công việc
@@ -33,6 +35,11 @@ Scope and Requirements
   + Ghi lại thời gian đã bấm của một ngày
   + Xem lịch sử
   + Thống kê thời gian
+  + Tự động lưu thời gian đã bấm khi tắt app
+  + Cho phép người dùng có thể giới hạn thời gian bấm, các mốc gồm 30m, 1h, 1h30,...4h
+  + Giới hạn tối đa của bấm giờ là 8h
+  + Khi thời gian đã bấm đạt 7h45m, phát âm thanh và thông báo đại ý "bạn cần nghỉ ngơi"
+  + Khi chạm mốc 8h, tự động ngừng bấm và hiện thông báo yêu cầu người dùng đại ý "hãy nghỉ ngơi một lát"
 2.2. Những việc cho phiên bản tiếp theo
 - Bạn bè
   + Kết bạn
@@ -40,6 +47,14 @@ Scope and Requirements
   + Xem danh sách bạn bè
   + Xếp hạng bạn bè
   + Xóa bạn bè
+- Todo List:
+  + Thêm các emote cho người dùng tùy chọn thêm vào phần đặt tên task hoặc group
+- Chung:
+  + Cho phép người dùng tùy chọn hình ảnh nền chủ đề cho background
+- Pomodoro:
+  + Đặt thêm các mốc thông báo "nghỉ ngơi" ở nhiều thời điểm sau 4h bấm hơn, gồm:
+    # Lúc 5h45m, lúc 6h45m
+
 2.3. Những việc phát triển sau:
 - Cộng động:
   + Tạo cộng đồng
@@ -56,6 +71,20 @@ Scope and Requirements
 - Auth:
   + Đăng nhập/ đăng kí bằng facebook
   + Đăng nhập/ đăng kí bằng google
+- Thông báo:
+  + Hiện Desktop Notification khi hết giờ đã đặt
+- Pomodoro:
+  + Cho phép người dùng cài thời gian nghỉ giữa các set hoặc không
+  + Hiện thông báo "Bạn vừa kết thúc một buổi làm việc dài, liệu có chắc là bạn muốn làm thêm?
+chúng tôi thật sự quan ngại cho sức khỏe của bạn" nếu thời gian đã bấm gần nhất trước đó là lớn hơn 4h và bé hơn 8h, đồng thời thì
+Khoảng cách thời gian giữa lần bấm sắp tới và trước đó nhỏ hơnn1h
+  + hiện các câu thông báo khích lệ ở các mốc thời gian:
+    # 30p: "Bạn đã duy trì được một khoản thời gian, hãy tiếp tục!"
+    # 1h: "1 tiếng đã trôi qua và bạn vẫn ở đây, có thể nghỉ ngơi một chút rồi quay lại nhé <3"
+    # 1h30m: " Một buổi hcoj tuyệt vời!"
+    # 2h: "2 tiếng rồi, đi lấy cốc nước thôi!"
+    # 2h30p: "Bạn có mệt không? Quả là một quảng thời gian bổ ích"
+    # 3h: "3 tiếng rồi và bạn vẫn còn ngồi đây, nên nghỉ ngơi nhỉ"
 
 3. Yêu cầu chức năng
 - FR-01. Hệ thống phải cho phép người dùng đăng nhập
@@ -88,9 +117,156 @@ Scope and Requirements
 - FR-26. Hệ thống ghi lại tổng thời gian đã bấm của ngày
 - FR-27. Người dùng có thể xem lịch sử bấm giờ của mình
 - FR-28. Người dùng có thể xem thống kê thời gian đã bấm của từng ngày
-4. Yêu cầu phi chức năng
-5. Ràng bược và giả đinẹ
+- FR-29. Người dùng có thể thay đổi ảnh đại diện của mình
+- FR-30. Người dùng có thể tạo mô tả cho 1 công việc cụ thể
+- FR-31. Hệ thống tự động lưu lại giời gian đã bấm nếu người dùng tắt app mà chưa ngừng thời gian
+- FR-32. Người dùng chỉ có thể bấm tối đa 8h cho mỗi lần
+- FR-33. Hệ thốn phải hiển thị thông báo cảnh báo khi thời gian pomodoro đạt 7h45m
+- FR-34. Hệ thống phải tự động ngừng khi đạt 8h và hiện thông báo chính xác
+
+4. Yêu cầu phi chức năng (Non-functional Requirements)
+4.1. Hiệu năng (Performance)
+- NFR-01. API phải phản hồi trong 500ms với 95% request
+- NFR-02. Hệ thống phải xử lý được 100 request đồng thời
+- NFR-03. Thời gian load trang chính phải nhỏ hơn hoặc bằng 2 giây
+4.2. Bảo mật (Security)
+- NFR-04. Mật khẩu phải được mã hóa bằng bcrypt
+- NFR-05. API phải sử dụng JWT authentication
+- NFR-06. Người dùng chỉ được truy cập dữ liệu của chính mình
+- NFR-07. Hệ thống phải validate toàn bộ dữ liệu được gửi lên từ người dùng
+4.3. Khả dụng (Availability)
+- NFR-08. Hệ thống phải đảm bảo uptime lớn hơn hoặc bằng 99%
+- NFR-09. Khi hệ thống lỗi thì phải trả message rõ ràng
+4.4. Khả năng mở rộng (Scalability)
+- NFR-10: Code phải tách layer rõ ràng
+4.5 Maintainability (Dễ bảo trì)
+- NFR-11. Code phải tuân thủ theo chuẩn TypeScript (không dùng any bừa bãi)
+- NFR-12. Mỗi module phải được tách riêng
+- NFR-13. Không được viết logic nghiệp vụ trong các controller
+4.6 Logging & Monitoring
+- NFR-14: Hệ thống phải có log:
+  + request
+  + error
+- NFR-16: Error phải có stack trace để debug
+4.7 UX (Trải nghiệm người dùng)
+- NFR-17: Hệ thống phải hiển thị loading khi gọi API
+- NFR-18: Thông báo lỗi phải rõ ràng, dễ hiểu
+- NFR-19: Không được reload toàn bộ trang khi thao tác
+
+5. Ràng bược và giả định
+5.1. Ràng buộc (Constraints)
+- C-01. Backend phải được xây dựng bằng Node.js với TypeScript
+- C-02. Frontend phải được xây dựng bằng
+- C-03. Cơ sở dữ liệu sử dụng MySQL
+- C-04. Hệ thống sử dụng REST API
+- C-05. Authenication sử dụng JWT
+- C-06. Không sử dụng dịch vụ trả phí (ưu tiên free)
+- C-07. Hệ thống được phát triển trên môi trường đơn
+5.2. Giả định (Assumptions)
+- A-01. Số lượng người dùng ban đầu < 10
+- A-02. Người dùng có kết nối internet ổn định
+- A-03. Hệ thống không yêu cầu xử lý realtime
+- A-04. Một người dùng chỉ sử dụng 1 tài khoản
+- A-05. Dữ liệu không yêu cầu backup tự động ở version đầu tiên
+- A-06. Không có yêu cầu phân quyền phức tạp
+
 6. Tiêu chí hoàn thành
+6.1. Tiêu chí hoàn thành tổng thể của hệ thống
+- AC-01. Toàn bộ chức năng thuộc phạm vi version đầu tiên phải hoạt động đúng
+- AC-02. Backend và Frontend phải kết nối thành công
+- AC-03. Hệ thống không được crash trong các thao tác cơ bản
+- AC-04. Toàn bộ API phải được test thành công bằng Postman
+- AC-05. Dữ liệu phải được lưu chính xác bào database
+- AC-06. Các chức năng yêu cầu đăng nhập phải được bảo vệ bằng JWT
+- AC-07. Không có lỗi TypeScript nghiêm trọng trong project
+- AC-08. Code phải được tổ chức theo module rõ ràng
+- AC-09. Hệ thống có thể chạy thành công ở môi trường local
+6.2 Tiêu chí hoàn thành Auth
+- AC-AUTH-01. Người dùng có thể đăng kí tài khoản mới
+- AC-AUTH-02. Người dùng có thể đăng nhập bằng email và password hợp lệ
+- AC-AUTH-03. Sai thông tin đăng nhập phải trả về lỗi rõ ràng
+- AC-AUTH-04. Password phải được mã hóa trước khi lưu
+- AC-AUTH-05. JWT token phải được trả về sau khi login thành công
+- AC-AUTH-06. Người dùng có thể logout
+6.3 Tiêu chí hoàn thành Todo List
+- AC-TODO-01. Người dùng có thể tạo công việc mới
+- AC-TODO-02. Người dùng có thể chỉnh sửa công việc
+- AC-TODO-03. Người dùng có thể xóa công việc
+- AC-TODO-04. Người dùng có thể thay đổi trạng thái công việc
+- AC-TODO-05. Người dùng có thể xem danh sách công việc của chính mình
+- AC-TODO-06. Người dùng không thể truy cập công việc của người khác
+- AC-TODO-07. Người dùng có thể tạo nhóm công việc
+- AC-TODO-08. Người dùng có thể xóa nhóm công việc
+- AC-TODO-09. Người dùng có thể đưa 1 công việc vào 1 nhóm công việc
+- AC-TODO-10. Người dùng có thể tạo môt tả cho một công việc
+6.4 Tiêu chí hoàn thành Pomodoro
+- AC-POMO-01. Người dùng có thể start/pause/stop timer
+- AC-POMO-02. Hệ thống lưu tổng thời gian của ngày
+- AC-POMO-03. Người dùng có thể xem lịch sử pomodoro
+- AC-POMO-04. Hệ thống thống kê đúng thời gian đã học
+- AC-POMO-05. Thông báo quan ngại phải hiện đúng lúc
+- AC-POMO-06. Hệ thốn phải dừng pomodoro đúng lúc tránh người dùng làm việc quá sức
 7. Validation Rules
+7.1 Auth Validation
+- VR-AUTH-01. Email
+  + Không được để trống
+  + Phải đúng định dạng email
+  + Độ dài tối đa 255 kí tự
+- VR-AUTH-02. Password
+  + Không được để trống
+  + Độ dài tối thiểu 8 kí tự
+  + Độ dài tối đa 64 kí tự
+- VR-AUTH-03. Confirm Password
+  + Phải trùng với password
+7.2 Todo Validation
+- VR-TODO-01. Task Title
+  + Không được để trống
+  + Độ dài tối đa: 100 kí tự
+- VR-TODO-02. Task Description
+  + Có thể để trống
+  + Độ dài tối đa 1000 kí tự
+- VR-TODO-03. Task Status
+  + Chỉ được nhận: TODO, IN_PROCESS, DONE
+7.3 Group Validation
+- VR-GROUP-01. Group Name
+  + Không được để trống
+  + Độ dài tối đa 50 kí tự
+7.4 Pomodoro Validation
+- VR-POMO-01. Duration
+  + Phải lớn hơn 0
+  + Không vượt quá 8h
+7.5 Account Validation
+- VR-ACCOUNT-01. Username
+  + Không được để trống
+  + Không chức kí tự đặc biệt nguy hiểm
+
 8. Các tác nhân
+- ACT-01. Guest (Khách chưa đăng nhập)
+Mô tả: Người dùng chưa xác thực tài khoản trong hệ thống
+Quyền hạn:
+  + Đăng kí tài Khoảng
+  + Đăng nhập
+  + Yêu cầu quên mật khẩu
+- ACT-02. Authenticated User (Người dùng đã đăng nhập)
+Mô tả: Người dùng đã xác thực thành công bằng JWT.
+Quyền hạn:
+- Quản lý tài khoản cá nhân
+- Tạo/chỉnh sửa/xóa công việc
+- Quản lý nhóm công việc
+- Sử dụng Pomodoro
+- Xem lịch sử và thống kê
+- Đổi mật khẩu
+- Xóa tài khoản
+- ACT-03. Email Service
+Mô tả: Dịch vụ gửi email được sử dụng bởi hệ thống
+Chức năng:
+- Gửi email quên mật khẩu
+- Gửi mã xác nhận xóa tài khoản
 9. Các phụ thuộc bên ngoài
+- ED-01. Node.jst Runtime
+- ED-02. MySQL
+- ED-03. Email Service
+- ED-04. JWT Library
+- ED-05. Frontend Framework
+- ED-06. ORM / Database Driver
+- ED-07. Hosting Platform (Vercel)
