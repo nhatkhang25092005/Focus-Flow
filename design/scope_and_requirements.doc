@@ -25,11 +25,15 @@ Scope and Requirements
   + Xem trạng thái công việc
   + Xóa công việc
   + Chỉnh sửa công công việc
-  + Chuyển trạng thái công việc
+    # Chuyển trạng thái công việc
+    # Đổi tên công việc
+    # Chỉnh sửa mô tả công việc
   + Tạo nhóm công việc
-  + Tùy chỉnh thông tin nhóm công việc
+  + Chỉnh sửa tên nhóm công việc
   + Xóa nhóm công việc
   + Phân cụm công việc trong 1 nhóm công việc
+  + Ghim công việc
+  + Ghim nhóm công việc
 - Pomodoro
   + Bấm giờ
   + Ghi lại thời gian đã bấm của một ngày
