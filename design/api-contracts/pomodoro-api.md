@@ -1,5 +1,7 @@
 # Pomodoro API Contracts
 
+# All urls start with  `/api`
+
 # Start Pomodoro
 
 ## Endpoint

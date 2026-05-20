@@ -1,0 +1,19 @@
+
+sequenceDiagram
+
+  participant Client
+  participant Server
+
+  Client->>Server: Login
+
+  Server-->>Client:
+  Set-Cookie: accessToken
+  Set-Cookie: refreshToken
+
+  Client->>Server:
+  Request API
+
+  Browser tự gửi cookie
+
+  Server->>Server:
+  Check access token

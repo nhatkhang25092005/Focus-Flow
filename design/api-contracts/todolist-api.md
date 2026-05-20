@@ -1,5 +1,7 @@
 # Todo API Contracts
 
+# All urls start with  `/api`
+
 # Create Task
 
 ## Endpoint

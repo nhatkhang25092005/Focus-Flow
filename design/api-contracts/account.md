@@ -1,5 +1,7 @@
 # Account API Contracts
 
+# All urls start with  `/api`
+
 # Get Account Information
 
 ## Endpoint

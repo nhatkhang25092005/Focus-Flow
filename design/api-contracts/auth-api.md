@@ -1,5 +1,7 @@
 # Auth API Contracts
 
+# All urls start with  `/api`
+
 # Login
 
 ## Endpoint
@@ -50,7 +52,7 @@ Not required.
   "data": {
     "access_token": "jwt_token_here",
     "user": {
-      "id": 1,
+      "user_id": 1,
       "username": "zesk",
       "email": "zesk@example.com",
       "hobbies": ["game"],
@@ -348,6 +350,74 @@ Requires Bearer Token.
 ```
 
 ---
+
+# Refresh Token
+
+## Endpoint
+
+`POST /auth/refresh-token`
+
+## Description
+
+Generate a new access token using a valid refresh token.
+
+---
+
+## Request Headers
+
+| Key          | Value            |
+| ------------ | ---------------- |
+| Content-Type | application/json |
+
+---
+
+## Request Body
+
+```json
+{
+  "refreshToken": "eyJhbGciOiJIUzI1NiJ9..."
+}
+```
+
+---
+
+## Success Response
+
+### `200 OK`
+
+```json
+{
+  "success": true,
+  "message": "Refresh token successful",
+  "data": {
+    "accessToken": "new-access-token",
+  }
+}
+```
+
+---
+
+## Error Responses
+
+### `401 Unauthorized`
+
+```json
+{
+  "success": false,
+  "message": "Invalid or expired refresh token"
+}
+```
+
+---
+
+### `403 Forbidden`
+
+```json
+{
+  "success": false,
+  "message": "Refresh token revoked"
+}
+```
 
 
 # Standard Error Response
