@@ -1,0 +1,20 @@
+{
+  "auth": {
+    "page": {
+      "hero_title": "Xin chào FocusFlow",
+      "hero_slogan": "Quản lý thời gian học tập, theo dõi tiến trình và kết nối với mọi người",
+      "header": "FocusFlow"
+    },
+    "login_form": {
+      "welcome": "Chào mừng",
+      "registration_suggest": "Chưa có tài khoản?",
+      "register_link": "Đăng ký",
+      "email_label": "Email",
+      "email_placeholder": "Email",
+      "password_label": "Mật khẩu",
+      "password_placeholder": "***************",
+      "forgot_link": "Quên mật khẩu?",
+      "submit_button": "Đăng nhập"
+    }
+  }
+}

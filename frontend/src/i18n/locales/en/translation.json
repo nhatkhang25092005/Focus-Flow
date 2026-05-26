@@ -1,0 +1,20 @@
+{
+  "auth":{
+    "page":{
+      "hero_title":"Hello FocusFlow",
+      "hero_slogan":"Manage your study time, track your progress, and connect with others",
+      "header":"FocusFlow"
+    },
+    "login_form":{
+      "welcome":"Welcome",
+      "registration_suggest":"Don't have an account?",
+      "register_link":"Register",
+      "email_label":"Email",
+      "email_placeholder":"Email",
+      "password_label":"Password",
+      "password_placeholder":"***************",
+      "forgot_link":"Forgot?",
+      "submit_button":"Login"
+    }
+  }
+}
