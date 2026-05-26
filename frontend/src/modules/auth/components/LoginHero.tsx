@@ -13,12 +13,12 @@ export default function LoginHero() {
 
   return (
     <>
-      <div className="mx-50 shrink-0">
-        <h1 className="font-bold text-6xl font-virgil">
+      <div className="mx-20 shrink-0">
+        <h1 className="font-bold text-5xl font-virgil italic">
           {t("auth.page.hero_title")}
         </h1>
 
-        <p className="text-4xl font-virgil">{t("auth.page.hero_slogan")}</p>
+        <p className="text-3xl font-virgil">{t("auth.page.hero_slogan")}</p>
       </div>
 
       <Carousel delayTime={5000} duration={1000}>
