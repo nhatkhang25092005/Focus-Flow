@@ -1,8 +1,9 @@
 import { useTranslation } from "react-i18next"
 import InputField from "../components/InputField"
+import { useLogin } from "./useLogin"
 export default function LoginForm() {
   const { t } = useTranslation()
-
+  const { errors, register, onSubmit } = useLogin()
   return (
     <>
       <div className="flex flex-col">
@@ -10,7 +11,7 @@ export default function LoginForm() {
           {t("auth.login_form.welcome")}
         </h2>
 
-        <p className="text-lg">
+        <p className="text-sm mt-2">
           {t("auth.login_form.registration_suggest")}
 
           <a
@@ -22,40 +23,53 @@ export default function LoginForm() {
         </p>
       </div>
 
-      <form className="flex flex-col gap-4 w-full">
+      <form onSubmit={onSubmit} className="flex flex-col w-full">
+        {/* Email Input */}
         <InputField
+          errorText={errors.email?.message}
+          {...register("email")}
           label="Email"
           required
+          containerClassName="mt-6"
           placeholder={t("auth.login_form.email_placeholder")}
         />
 
+        {/* Password Input */}
         <InputField
+          type="password"
+          errorText={errors.password?.message}
+          {...register("password")}
           label={t("auth.login_form.password_label")}
           required
-          containerClassName="relative"
+          containerClassName="mt-6"
           placeholder={t("auth.login_form.password_placeholder")}
-        >
+        />
+
+        {/* Submit Button */}
+        <div className="w-full mt-4 flex flex-col items-end">
           <a
             href="/forgot"
-            className="text-blue-500 right-0 cursor-pointer text-lg absolute"
+            className="text-blue-500 absolute cursor-pointer text-sm underline"
           >
             {t("auth.login_form.forgot_link")}
           </a>
-        </InputField>
-
-        <button
-          className="
-            text-2xl font-bold border h-15 rounded-xl
-            bg-amber-500 border-amber-300
-            cursor-pointer
-            transition-colors
-            hover:bg-amber-600
-            hover:border-amber-200
-            duration-300
-          "
-        >
-          {t("auth.login_form.submit_button")}
-        </button>
+          <button
+            type="submit"
+            className="
+              mt-7
+              w-full
+              font-semibold border h-10 rounded-lg
+              bg-amber-500 border-amber-300
+              cursor-pointer
+              transition-colors
+              hover:bg-amber-600
+              hover:border-amber-200
+              duration-300
+            "
+          >
+            {t("auth.login_form.submit_button")}
+          </button>
+        </div>
       </form>
     </>
   )

@@ -1,5 +1,12 @@
 import type { ReactNode } from "react"
-import { useState, useEffect, useRef, Children, useCallback, useMemo } from "react"
+import {
+  useState,
+  useEffect,
+  useRef,
+  Children,
+  useCallback,
+  useMemo,
+} from "react"
 import { useGetWidth } from "../hooks/useGetWidth"
 type CarouselProperties = {
   children: ReactNode
@@ -24,8 +31,8 @@ export default function Carousel({
   const containerDivWidth = useRef<HTMLDivElement>(null)
   const [currentIndex, setCurrentIndex] = useState<number>(startIndex)
   const [enableTransition, setEnableTransition] = useState<boolean>(true)
-  const slides = useMemo(()=>Children.toArray(children),[children])
-  const cloneSlides = useMemo(()=>[...slides, slides[0]],[slides])
+  const slides = useMemo(() => Children.toArray(children), [children])
+  const cloneSlides = useMemo(() => [...slides, slides[0]], [slides])
   const [isTabVisibility, setIsTabVisibility] = useState<boolean>(true)
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
   const sliderWidth: number = useGetWidth(containerDivWidth)
@@ -49,6 +56,8 @@ export default function Carousel({
 
   const scheduleNext = useCallback(() => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    const isVisible = containerDivWidth.current?.offsetParent !== null
+    if (!isVisible) return
     timeoutRef.current = setTimeout(() => {
       setCurrentIndex((prev) => prev + 1)
     }, scheduleTime)

@@ -1,20 +1,51 @@
 {
-  "auth":{
-    "page":{
-      "hero_title":"Hello FocusFlow",
-      "hero_slogan":"Manage your study time, track your progress, and connect with others",
-      "header":"FocusFlow"
+  "auth": {
+    "page": {
+      "hero_title": "Hello FocusFlow",
+      "hero_slogan": "Manage your study time, track your progress, and connect with others",
+      "header": "FocusFlow"
     },
-    "login_form":{
-      "welcome":"Welcome",
-      "registration_suggest":"Don't have an account?",
-      "register_link":"Register",
-      "email_label":"Email",
-      "email_placeholder":"Email",
-      "password_label":"Password",
-      "password_placeholder":"***************",
-      "forgot_link":"Forgot?",
-      "submit_button":"Login"
+    "login_form": {
+      "welcome": "Welcome",
+      "registration_suggest": "Don't have an account?",
+      "register_link": "Register",
+      "email_label": "Email",
+      "email_placeholder": "Email",
+      "password_label": "Password",
+      "password_placeholder": "Password",
+      "forgot_link": "Forgot?",
+      "submit_button": "Login"
+    },
+    "error": {
+      "login": {
+        "invalid_credentials": "Email or Password is incorrect",
+        "invalid_email": "Invalid email",
+        "empty_email": "Email cannot be empty",
+        "empty_password": "Password cannot be empty",
+        "invalid_password_min": "Password must be at least 8 characters",
+        "invalid_password_max": "Password must be no more than 64 characters"
+      }
     }
+  },
+  "ui": {
+    "toast": {
+      "errorTitle": "Error!",
+      "successTitle": "Success!",
+      "infoTitle": "Info",
+      "warningTitle": "Warning!"
+    },
+    "loading": {
+      "login_loading_text": "Logging in..."
+    }
+  },
+  "axios": {
+    "REQUEST_TIMEOUT": "Request timeout",
+    "NETWORK_ERROR": "Network error",
+    "CANCELED": "Request canceled",
+    "BAD_REQUEST": "Bad request",
+    "BAD_RESPONSE": "Bad response",
+    "TOO_MANY_REDIRECTS": "Too many redirects",
+    "INVALID_CONFIG": "Invalid config",
+    "UNKNOWN_ERROR": "Unknown error"
   }
 }

@@ -12,9 +12,40 @@
       "email_label": "Email",
       "email_placeholder": "Email",
       "password_label": "Mật khẩu",
-      "password_placeholder": "***************",
+      "password_placeholder": "Mật khẩu",
       "forgot_link": "Quên mật khẩu?",
       "submit_button": "Đăng nhập"
+    },
+    "error": {
+      "login": {
+        "invalid_credentials": "Email hoặc Mật khẩu không đúng",
+        "invalid_email": "Email không hợp lệ",
+        "empty_email": "Email không được để trống",
+        "empty_password": "Mật khẩu không được để trống",
+        "invalid_password_min": "Mật khẩu phải có tối thiểu 8 kí tự",
+        "invalid_password_max": "Mật khẩu phải có tối đa 8 kí tự"
+      }
     }
+  },
+  "ui": {
+    "toast": {
+      "errorTitle": "Lỗi!",
+      "successTitle": "Thành công!",
+      "infoTitle": "Thông tin",
+      "warningTitle": "Cảnh báo!"
+    },
+    "loading": {
+      "login_loading_text": "Đang đăng nhập..."
+    }
+  },
+  "axios": {
+    "REQUEST_TIMEOUT": "Hết thời gian yêu cầu",
+    "NETWORK_ERROR": "Lỗi kết nối mạng",
+    "CANCELED": "Yêu cầu đã bị hủy",
+    "BAD_REQUEST": "Yêu cầu không hợp lệ",
+    "BAD_RESPONSE": "Phản hồi không hợp lệ",
+    "TOO_MANY_REDIRECTS": "Chuyển hướng quá nhiều lần",
+    "INVALID_CONFIG": "Cấu hình không hợp lệ",
+    "UNKNOWN_ERROR": "Lỗi không xác định"
   }
 }
