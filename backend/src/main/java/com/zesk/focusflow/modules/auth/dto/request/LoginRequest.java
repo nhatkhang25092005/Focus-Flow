@@ -1,6 +1,6 @@
 package com.zesk.focusflow.modules.auth.dto.request;
 
-import com.zesk.focusflow.modules.auth.constance.LoginErrors;
+import com.zesk.focusflow.modules.auth.constants.LoginErrors;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

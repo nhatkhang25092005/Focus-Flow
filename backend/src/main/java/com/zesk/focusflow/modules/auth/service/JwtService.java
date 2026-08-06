@@ -35,7 +35,6 @@ public class JwtService {
    * Generate JWT token with email and token version as claims
    * Using token version to invalidate old tokens when user logs out or changes password
    * @param email
-   * @param tokenVersion
    * @return
    */
   public String generateAccessToken(String email) {

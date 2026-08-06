@@ -2,6 +2,8 @@ package com.zesk.focusflow.common.exception;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.coyote.Response;
+import org.jspecify.annotations.NonNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -15,13 +17,26 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 public class GlobalExceptionHandler {
 
   @ExceptionHandler(UnauthorizeException.class)
-  public ResponseEntity<ApiErrorResponse> handleUnauthorizeException(UnauthorizeException ex) {
+  public ResponseEntity<@NonNull ApiErrorResponse> handleUnauthorizeException(UnauthorizeException ex) {
     return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
       .body(new ApiErrorResponse(false, ex.getCode(), ex.getMessage(),null));
   }
 
+  @ExceptionHandler(UserExistedException.class)
+  public ResponseEntity<@NonNull ApiErrorResponse> handleUserExistedException(UserExistedException ex){
+    return ResponseEntity.status(HttpStatus.CONFLICT)
+      .body(new ApiErrorResponse(false, ex.getCode(), ex.getMessage(), null));
+  }
+
+  @ExceptionHandler(RegisterException.class)
+  public ResponseEntity<@NonNull ApiErrorResponse> handleUserVerifiedException(RegisterException ex){
+    return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
+      .body(new ApiErrorResponse(false, ex.getCode(), ex.getMessage(), null));
+  }
+
+  // Validation Failed
   @ExceptionHandler(MethodArgumentNotValidException.class)
-  public ResponseEntity<ApiErrorResponse> handleValidationException(
+  public ResponseEntity<@NonNull ApiErrorResponse> handleValidationException(
     MethodArgumentNotValidException ex
   ){
     Map<String, String> errors = new LinkedHashMap<>();
@@ -31,6 +46,6 @@ public class GlobalExceptionHandler {
 
     return ResponseEntity
       .status(HttpStatus.BAD_REQUEST)
-      .body(new ApiErrorResponse(false, "VALIDATION_ERROR","Validation error", errors));
+      .body(new ApiErrorResponse(false, "VALIDATION_FAILED","Validation error", errors));
   }
 }

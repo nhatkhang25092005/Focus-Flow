@@ -171,6 +171,80 @@ Not required.
 
 ---
 
+# Verification API Contracts
+
+# All urls start with `/api`
+
+# Send verification code
+
+## Endpoint
+`Post /auth/verify`
+
+---
+
+## Description
+
+Verify the new account after register
+
+## Authentication
+
+Not required
+
+---
+
+## Request Body
+| Field             | Type   | Required | Rules              |
+| ----------------- | ------ | -------- | ------------------ |
+| email             | string | Yes      | valid email, <=255 |
+| verification_code | string | Yes      | 8chars             |
+
+---
+
+## Example Request
+
+```json
+{
+  "email": "zesk@example.com",
+  "verification_code": "12345678"
+}
+```
+
+
+## Success Response
+
+### `200 OK`
+
+```json
+{
+  "message": "Verify new account successful",
+  "data": null
+}
+```
+
+---
+
+## Error Responses
+
+### `400 Bad Request`
+
+```json
+{
+  "message": "Verification error",
+  "errors": {
+    "email": "Invalid email format",
+    "verification_code":"Invalid code"
+  }
+}
+```
+
+### `400 User not found`
+
+```json
+{
+  "message": "No registered user found"
+}
+```
+
 # Forgot Password
 
 ## Endpoint

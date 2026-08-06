@@ -1,13 +1,8 @@
 package com.zesk.focusflow.common.exception;
 
-public class UnauthorizeException extends RuntimeException {
-  private final String code;
+public class UnauthorizeException extends AppException {
   public UnauthorizeException(String code, String message) {
-    super(message);
-    this.code = code;
+    super(code, message);
   }
   
-  public String getCode(){
-    return code;
-  }
 }

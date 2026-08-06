@@ -14,4 +14,8 @@ public class InternalResult {
     LocalDate birthdate,
     List<String> hobbies
   ) {}
+
+  // public record RegisterServiceResult(
+
+  // )
 }

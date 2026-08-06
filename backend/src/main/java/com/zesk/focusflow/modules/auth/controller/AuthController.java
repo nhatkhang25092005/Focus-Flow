@@ -1,5 +1,7 @@
 package com.zesk.focusflow.modules.auth.controller;
 
+import com.zesk.focusflow.modules.auth.enums.RegisterStatus;
+import org.jspecify.annotations.NonNull;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.zesk.focusflow.modules.auth.dto.response.LoginResponse;
 import com.zesk.focusflow.modules.auth.dto.request.LoginRequest;
+import com.zesk.focusflow.modules.auth.dto.request.RegisterRequest;
 import com.zesk.focusflow.modules.auth.service.AuthService;
 import com.zesk.focusflow.modules.auth.service.CookieService;
 import com.zesk.focusflow.common.ApiResponse;
@@ -23,7 +26,7 @@ import com.zesk.focusflow.modules.auth.enums.LoginStatus;
 public class AuthController {
   private final AuthService authService;
   private final CookieService cookieService;
-  
+
   public AuthController(
     AuthService authService,
     CookieService cookieService
@@ -33,13 +36,13 @@ public class AuthController {
   }
 
   @PostMapping("/login")
-  public ResponseEntity<ApiResponse<LoginResponse>> login(
+  public ResponseEntity<@NonNull ApiResponse<LoginResponse>> login(
     @Valid @RequestBody LoginRequest request,
     HttpServletResponse response
   ) {
     LoginServiceResult loginResult = authService.login(request);
     cookieService.addRefreshTokenCookie(response, loginResult.refreshToken());
-    
+
     LoginResponse loginResponse = new LoginResponse(
       loginResult.accessToken(),
       new UserResponse(
@@ -59,6 +62,23 @@ public class AuthController {
         LoginStatus.LOGIN_SUCCESS.getCode(),
         LoginStatus.LOGIN_SUCCESS.getMessage(),
         loginResponse
+      )
+    );
+  }
+  @PostMapping("/register")
+  public ResponseEntity<@NonNull ApiResponse<Void>> register(
+    @Valid @RequestBody RegisterRequest request,
+    HttpServletResponse response
+  ){
+    // register service here
+    authService.register(request);
+    // create response base on the register service result
+    return ResponseEntity.ok(
+      new ApiResponse<>(
+        true,
+        RegisterStatus.REGISTER_SUCCESS.getCode(),
+        RegisterStatus.REGISTER_SUCCESS.getMessage(),
+        null
       )
     );
   }

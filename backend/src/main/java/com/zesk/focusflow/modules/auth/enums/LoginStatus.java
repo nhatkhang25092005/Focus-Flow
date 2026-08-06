@@ -12,6 +12,11 @@ public enum LoginStatus {
     "Email or password is invalid"
   ),
 
+  NOT_VERIFIED(
+    "NOT_VERIFIED",
+    "This account hasn't been verified"
+  ),
+
   LOGIN_FAIL(
     "AUTH_LOGIN_FAIL",
     "Login failed"
