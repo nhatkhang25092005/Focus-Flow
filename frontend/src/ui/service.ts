@@ -43,7 +43,7 @@ export const uiService = {
       style,
       position,
       direction,
-      duration
+      duration,
     }: ToastApiService) => {
       if (toastTimer) {
         clearTimeout(toastTimer)
@@ -66,10 +66,12 @@ export const uiService = {
   },
 
   showPopup: (
+    title: string,
     message: string,
     style: "success" | "error" | "info" | "navigate",
+    navigateTo?: string,
   ) => {
-    store.dispatch(showPopup({ message, style }))
+    store.dispatch(showPopup({ title, message, style, navigateTo }))
   },
 
   hidePopup: () => {

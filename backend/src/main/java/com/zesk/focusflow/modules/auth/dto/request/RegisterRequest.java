@@ -1,7 +1,6 @@
 package com.zesk.focusflow.modules.auth.dto.request;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import com.zesk.focusflow.modules.auth.constants.RegisterErrors;
 import com.zesk.focusflow.shared.validation.FieldMatch;
@@ -9,7 +8,6 @@ import com.zesk.focusflow.shared.validation.FieldMatch;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,9 +36,6 @@ public class RegisterRequest {
   @NotBlank(message = RegisterErrors.CONFIRM_PASSWORD_BLANK)
   @Size(min = 8, max = 64, message = RegisterErrors.PASSWORD_FORMAT)
   private String confirmedPassword;
-
-  @Size(max = 10)
-  private List<@Positive Long> hobbies;
 
   @Past
   private LocalDate birthdate;

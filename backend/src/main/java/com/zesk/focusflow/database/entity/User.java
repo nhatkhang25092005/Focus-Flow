@@ -40,6 +40,7 @@ public class User {
   @Column(name = "email", nullable = false, length = 255, unique = true)
   private String email;
 
+  @Builder.Default
   @Column(name = "birthdate")
   private LocalDate birthdate = null;
 

@@ -1,21 +1,9 @@
 import type { AxiosResponse } from "axios"
-type Success<T> = {
-  data?: T
-  code: string
-  message: string
-  success: true
-}
-export type Failure = {
-  success: false
-  code: string
-  message: string
-  errors?: []
-}
-export type Response<T> = Success<T> | Failure
+import {type ResponseData} from '../../share/types'
 
 export const getResponse = <T>(
-  rawAxiosResponse: AxiosResponse<Response<T>>,
-): Response<T> => {
+  rawAxiosResponse: AxiosResponse<ResponseData<T>>,
+): ResponseData<T> => {
   const backendResponse = rawAxiosResponse.data
   if (backendResponse.success) {
     return {

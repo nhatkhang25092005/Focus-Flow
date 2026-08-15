@@ -116,6 +116,7 @@ public class AuthService {
       .username(request.getUsername())
       .email(request.getEmail())
       .passwordHash(passwordEncoder.encode(request.getPassword()))
+      .birthdate(request.getBirthdate()) // nullable
       .build();
 
     userRepository.save(newUser);

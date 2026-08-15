@@ -16,6 +16,27 @@
       "forgot_link": "Forgot?",
       "submit_button": "Login"
     },
+    "register_form": {
+      "title": "Register",
+      "account_suggest": "Already have an account?",
+      "login_link": "Login",
+      "email_label": "Email",
+      "email_placeholder": "Email",
+      "username_label": "Username",
+      "username_placeholder": "Enter your username",
+      "password_label": "Password",
+      "password_placeholder": "Enter your password",
+      "confirmed_password_label": "Confirm password",
+      "confirmed_password_placeholder": "Enter your password again",
+      "birthday_label": "Birthday",
+      "birthday_placeholder": "Enter your birthday",
+      "submit_button": "Register",
+      "submitting_button": "Registering..."
+    },
+    "register": {
+      "success_title": "Registration request successful",
+      "success_message": "Verify your email using the code we sent to officially become a member of FocusFlow."
+    },
     "error": {
       "login": {
         "invalid_credentials": "Email or Password is incorrect",
@@ -24,10 +45,29 @@
         "empty_password": "Password cannot be empty",
         "invalid_password_min": "Password must be at least 8 characters",
         "invalid_password_max": "Password must be no more than 64 characters"
+      },
+      "register": {
+        "failed": "Registration failed. Please try again.",
+        "user_not_verified": "This email has been registered but not verified.",
+        "user_already_exists": "An account with this email already exists.",
+        "validation_failed": "Some registration details are invalid. Please review them and try again.",
+        "empty_email": "Email cannot be empty",
+        "invalid_email": "Invalid email",
+        "invalid_username_min": "Username must be at least 3 characters",
+        "invalid_username_max": "Username must be no more than 50 characters",
+        "invalid_birthday": "Birthday must be between 1 and 100 years ago",
+        "invalid_password_min": "Password must be at least 8 characters",
+        "invalid_password_max": "Password must be no more than 64 characters",
+        "empty_confirmed_password": "Please confirm your password",
+        "password_mismatch": "Passwords do not match"
       }
     }
   },
   "ui": {
+    "popup": {
+      "close_button": "Close",
+      "navigate_button": "Continue"
+    },
     "toast": {
       "errorTitle": "Error!",
       "successTitle": "Success!",
@@ -35,7 +75,8 @@
       "warningTitle": "Warning!"
     },
     "loading": {
-      "login_loading_text": "Logging in..."
+      "login_loading_text": "Logging in...",
+      "register_loading_text": "Registering..."
     }
   },
   "axios": {

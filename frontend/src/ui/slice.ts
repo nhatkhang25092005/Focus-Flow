@@ -22,6 +22,7 @@ const initialUIState: UiState = {
     horizon: 0,
   },
   popup: {
+    title:"",
     message: "",
     style: "info",
     visible: false,
@@ -66,14 +67,18 @@ export const uiSlice = createSlice({
     showPopup(
       state,
       action: PayloadAction<{
+        title: string
         message: string
         style: "success" | "error" | "info" | "navigate"
+        navigateTo?: string
       }>,
     ) {
       state.popup = {
+        title: action.payload.title,
         message: action.payload.message,
         style: action.payload.style,
         visible: true,
+        navigateTo: action.payload.navigateTo,
       }
     },
     hidePopup(state) {

@@ -116,8 +116,7 @@ Not required.
 | email            | string | Yes      | valid email, <=255  |
 | password         | string | Yes      | 8-64 chars          |
 | confirm_password | string | Yes      | must match password |
-| birthdate        | string | No       | format YYYY-MM-DD   |
-| hobbies          | array  | No       | array of hobby ids  |
+| birthdate        | string | No       | format YYYY-MM-DD   ||
 
 ---
 
@@ -130,7 +129,6 @@ Not required.
   "password": "12345678",
   "confirm_password": "12345678",
   "birthdate": "2005-09-25",
-  "hobbies": [1, 3]
 }
 ```
 

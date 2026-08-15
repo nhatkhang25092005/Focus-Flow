@@ -1,20 +1,5 @@
 @import "tailwindcss";
 
-@keyframes wave {
-  0%,
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(-5px);
-    opacity: 0.7; /* Đổi thành 0.7 cho rõ như trong config của bạn */
-  }
-}
-
-@theme {
-  --font-sans: "Virgil", "sans-serif";
-
-  /* BẮT BUỘC viết thế này để Tailwind v4 tạo ra class .animate-text_wave */
-  --animate-text_wave: wave 2s ease-in-out infinite;
-}
+/* @theme {
+  --font-sans: "Nunito", "sans-serif";
+} */

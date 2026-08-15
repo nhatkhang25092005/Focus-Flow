@@ -16,6 +16,27 @@
       "forgot_link": "Quên mật khẩu?",
       "submit_button": "Đăng nhập"
     },
+    "register_form": {
+      "title": "Đăng ký",
+      "account_suggest": "Đã có tài khoản?",
+      "login_link": "Đăng nhập",
+      "email_label": "Email",
+      "email_placeholder": "Email",
+      "username_label": "Tên tài khoản",
+      "username_placeholder": "Nhập tên tài khoản",
+      "password_label": "Mật khẩu",
+      "password_placeholder": "Nhập mật khẩu",
+      "confirmed_password_label": "Xác nhận mật khẩu",
+      "confirmed_password_placeholder": "Nhập lại mật khẩu",
+      "birthday_label": "Ngày sinh",
+      "birthday_placeholder": "Nhập ngày sinh",
+      "submit_button": "Đăng ký",
+      "submitting_button": "Đang đăng ký..."
+    },
+    "register": {
+      "success_title": "Yêu cầu đăng ký thành công",
+      "success_message": "Xác minh email bằng mã chúng tôi đã gửi để chính thức trở thành thành viên của FocusFlow."
+    },
     "error": {
       "login": {
         "invalid_credentials": "Email hoặc Mật khẩu không đúng",
@@ -24,10 +45,29 @@
         "empty_password": "Mật khẩu không được để trống",
         "invalid_password_min": "Mật khẩu phải có tối thiểu 8 kí tự",
         "invalid_password_max": "Mật khẩu phải có tối đa 8 kí tự"
+      },
+      "register": {
+        "failed": "Đăng ký thất bại. Vui lòng thử lại.",
+        "user_not_verified": "Email này đã được đăng kí nhưng chưa được xác minh.",
+        "user_already_exists": "Đã có tài khoản sử dụng email này.",
+        "validation_failed": "Một số thông tin đăng ký không hợp lệ. Vui lòng kiểm tra và thử lại.",
+        "empty_email": "Email không được để trống",
+        "invalid_email": "Email không hợp lệ",
+        "invalid_username_min": "Tên người dùng phải có ít nhất 3 ký tự",
+        "invalid_username_max": "Tên người dùng không được vượt quá 50 ký tự",
+        "invalid_birthday": "Ngày sinh phải cách hiện tại từ 1 đến 100 năm",
+        "invalid_password_min": "Mật khẩu phải có ít nhất 8 ký tự",
+        "invalid_password_max": "Mật khẩu không được vượt quá 64 ký tự",
+        "empty_confirmed_password": "Vui lòng xác nhận mật khẩu",
+        "password_mismatch": "Mật khẩu xác nhận không khớp"
       }
     }
   },
   "ui": {
+    "popup": {
+      "close_button": "Đóng",
+      "navigate_button": "Tiếp tục"
+    },
     "toast": {
       "errorTitle": "Lỗi!",
       "successTitle": "Thành công!",
@@ -35,7 +75,8 @@
       "warningTitle": "Cảnh báo!"
     },
     "loading": {
-      "login_loading_text": "Đang đăng nhập..."
+      "login_loading_text": "Đang đăng nhập...",
+      "register_loading_text": "Đang đăng ký..."
     }
   },
   "axios": {

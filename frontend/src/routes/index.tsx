@@ -1,20 +1,35 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import {
+  createBrowserRouter,
+  Outlet,
+  RouterProvider,
+} from "react-router-dom"
 import AuthPage from "../pages/AuthPage"
 import HomePage from "../pages/HomePage"
 import RegisterForm from "../modules/auth/register/RegisterForm"
+import UiHost from "../ui/UIHost"
+
 const router = createBrowserRouter([
   {
-    path: "/login",
-    element: <AuthPage />,
+    element: (
+      <UiHost>
+        <Outlet />
+      </UiHost>
+    ),
+    children: [
+      {
+        path: "/auth",
+        element: <AuthPage />,
+      },
+      {
+        path: "/home",
+        element: <HomePage />,
+      },
+      {
+        path: "/register",
+        element: <RegisterForm />,
+      },
+    ],
   },
-  {
-    path: "/home",
-    element: <HomePage />,
-  },
-  {
-    path: "/register",
-    element: <RegisterForm />,
-  }
 ])
 
 const AppRouter = () => {

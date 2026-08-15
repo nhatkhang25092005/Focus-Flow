@@ -1,31 +1,36 @@
 import { useTranslation } from "react-i18next"
-import InputField from "../components/InputField"
+import InputField from "../../../components/InputField/InputField"
 import { useLogin } from "./useLogin"
+import Title from "../../../components/text/Title"
+import {useSlider} from '../../../share/context/SliderContext'
+import Subtitle from "../../../components/text/Subtitle"
+import Button from "../../../components/Button"
 export default function LoginForm() {
   const { t } = useTranslation()
   const { errors, register, onSubmit } = useLogin()
+  const {goto} = useSlider()
   return (
     <>
       <div className="flex flex-col">
-        <h2 className="mt-2 text-4xl font-semibold">
+        <Title variant="4xl" bold="bold">
           {t("auth.login_form.welcome")}
-        </h2>
+        </Title>
 
-        <p className="text-sm mt-2">
+        <Subtitle color="secondary" variant="sm" className="mt-2">
           {t("auth.login_form.registration_suggest")}
-
           <a
-            href="/signup"
+            onClick = {() => goto('right')}
             className="text-blue-500 underline ml-1 cursor-pointer"
           >
             {t("auth.login_form.register_link")}
           </a>
-        </p>
+        </Subtitle>
       </div>
 
       <form onSubmit={onSubmit} className="flex flex-col w-full">
         {/* Email Input */}
         <InputField
+          type="email"
           errorText={errors.email?.message}
           {...register("email")}
           label="Email"
@@ -53,22 +58,9 @@ export default function LoginForm() {
           >
             {t("auth.login_form.forgot_link")}
           </a>
-          <button
-            type="submit"
-            className="
-              mt-7
-              w-full
-              font-semibold border h-10 rounded-lg
-              bg-amber-500 border-amber-300
-              cursor-pointer
-              transition-colors
-              hover:bg-amber-600
-              hover:border-amber-200
-              duration-300
-            "
-          >
+          <Button variant="primary" type="submit" className="mt-7 w-full">
             {t("auth.login_form.submit_button")}
-          </button>
+          </Button>
         </div>
       </form>
     </>

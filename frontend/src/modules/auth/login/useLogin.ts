@@ -1,4 +1,4 @@
-import { loginService } from "./loginService"
+import { loginService } from "../authServices"
 import { handleResponse } from "../../../utils/handleResponse"
 import { uiService } from "../../../ui/service"
 import { loginSchema, type LoginInput } from "./login.schema"

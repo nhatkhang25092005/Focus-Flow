@@ -26,9 +26,11 @@ export type ToastApiService = {
 // Popup types definition
 export type PopupStyle = "success" | "error" | "info" | "navigate"
 export interface PopupState {
+  title: string
   message: string
   style: PopupStyle
   visible: boolean
+  navigateTo?: string
 }
 
 // Loading types definition

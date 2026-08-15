@@ -114,7 +114,7 @@ const Toast = memo(
         <div
           className={cn(
             `rounded-lg m-2 bg-white flex flex-row
-          absolute w-75 h-15 border drop-shadow-2xl
+          absolute w-75 h-15 border drop-shadow-2xl pr-1
           transition-transform ease-out`,
             borderColor,
             getAnimation(direction, visible),

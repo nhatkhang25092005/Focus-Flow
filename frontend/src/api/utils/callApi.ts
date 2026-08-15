@@ -1,5 +1,6 @@
 import type { AxiosError, AxiosResponse } from "axios"
-import { getResponse, type Failure, type Response } from "./getResponse"
+import { type Failure, type ResponseData } from "../../share/types"
+import { getResponse } from "./getResponse"
 import axios from "axios"
 
 const AXIOS_ERROR_MAP: Record<string, { code: string; message: string }> = {
@@ -27,13 +28,13 @@ const getAxiosThrow = (axiosError: AxiosError): Failure => {
 }
 
 export async function callApi<T>(
-  request: () => Promise<AxiosResponse<Response<T>>>,
-): Promise<Response<T>> {
+  request: () => Promise<AxiosResponse<ResponseData<T>>>,
+): Promise<ResponseData<T>> {
   try {
     const response = await request()
     return getResponse(response)
   } catch (e) {
-    if (axios.isAxiosError<Response<T>>(e)) {
+    if (axios.isAxiosError<ResponseData<T>>(e)) {
       if (e.response) {
         return getResponse(e.response)
       }

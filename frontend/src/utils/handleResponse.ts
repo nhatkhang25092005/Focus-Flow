@@ -1,8 +1,8 @@
-import type { Response } from "../api/utils/getResponse"
+import type { ResponseData } from "../share/types"
 type Props<T> = {
-  response: Response<T>
+  response: ResponseData<T>
   onSuccess: (data?: T) => void
-  onFailure: (response?: Response<T>) => void
+  onFailure: (response?: ResponseData<T>) => void
 }
 export function handleResponse<T>({
   response,
