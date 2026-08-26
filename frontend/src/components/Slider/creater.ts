@@ -1,6 +1,11 @@
 import { Children, isValidElement, type ReactElement, type ReactNode } from "react"
 import { Slide } from "./Slider"
-import { type SlideProps, type SlideMapMetadata } from "./type"
+import {
+  type Item2DMatrix,
+  type SlideId,
+  type SlideProps,
+  type SlideMapMetadata,
+} from "./type"
 
 export const createSlideElements = (children: ReactNode): ReactElement<SlideProps>[] => {
   const slideElements = Children.toArray(children).filter(
@@ -12,8 +17,8 @@ export const createSlideElements = (children: ReactNode): ReactElement<SlideProp
   return slideElements
 }
 
-export const createSlideMapMetadata = (
-  item2DMatrix: (string | null)[][],
+export const createSlideMapMetadata = <const TMatrix extends Item2DMatrix>(
+  item2DMatrix: TMatrix,
   slideElements: ReactElement<SlideProps>[],
 ): SlideMapMetadata[] => {
   const slideRegistry = new Map<string, ReactElement<SlideProps>>()
@@ -34,8 +39,11 @@ export const createSlideMapMetadata = (
         console.warn(`Slide with id ${slideId} exists but isn't referenced by the matrix.`)
         continue
       }
-      const { id, children, navigation } = slide.props
-      slideMapMetadata.push({ id, component: children, position: { x: x, y: y }, navigation })
+      slideMapMetadata.push({
+        id: slideId as SlideId,
+        component: slide.props.children,
+        position: { x, y },
+      })
     }
   }
 

@@ -17,8 +17,13 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.zesk.focusflow.modules.auth.dto.InternalResult.LoginServiceResult;
 import com.zesk.focusflow.modules.auth.dto.request.LoginRequest;
 import com.zesk.focusflow.modules.auth.security.JwtAuthenticationFilter;
-import com.zesk.focusflow.modules.auth.service.AuthService;
 import com.zesk.focusflow.modules.auth.service.CookieService;
+import com.zesk.focusflow.modules.auth.service.ForgotPasswordService;
+import com.zesk.focusflow.modules.auth.service.ResetPasswordService;
+import com.zesk.focusflow.modules.auth.service.ResentVerificationCodeService;
+import com.zesk.focusflow.modules.auth.service.LoginService;
+import com.zesk.focusflow.modules.auth.service.RegisterService;
+import com.zesk.focusflow.modules.auth.service.VerificationService;
 
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
@@ -36,7 +41,22 @@ class AuthControllerTest {
   private MockMvc mockMvc;
 
   @MockitoBean
-  private AuthService authService;
+  private LoginService loginService;
+
+  @MockitoBean
+  private RegisterService registerService;
+
+  @MockitoBean
+  private VerificationService verificationService;
+
+  @MockitoBean
+  private ForgotPasswordService forgotPasswordService;
+
+  @MockitoBean
+  private ResetPasswordService resetPasswordService;
+
+  @MockitoBean
+  private ResentVerificationCodeService resentVerificationCodeService;
 
   @MockitoBean
   private CookieService cookieService;
@@ -46,7 +66,7 @@ class AuthControllerTest {
 
   @Test
   void login_returnLoginResponse() throws Exception {
-    given(authService.login(any(LoginRequest.class)))
+    given(loginService.login(any(LoginRequest.class)))
       .willReturn(new LoginServiceResult(
         "access-token",
         "refresh-token",
@@ -76,5 +96,24 @@ class AuthControllerTest {
 
     verify(cookieService)
       .addRefreshTokenCookie(any(HttpServletResponse.class), eq("refresh-token"));
+  }
+
+  @Test
+  void verifyAccount_returnsVerifySuccess() throws Exception {
+    mockMvc.perform(post("/api/auth/verify")
+      .contentType("application/json")
+      .content("""
+        {
+          "email": "test@gmail.com",
+          "verification_code": "123456"
+        }
+      """))
+      .andExpect(status().isOk())
+      .andExpect(jsonPath("$.success").value(true))
+      .andExpect(jsonPath("$.code").value("VERIFY_SUCCESS"))
+      .andExpect(jsonPath("$.message").value("Account verified successfully"))
+      .andExpect(jsonPath("$.data").doesNotExist());
+
+    verify(verificationService).verifyAccount(any());
   }
 }

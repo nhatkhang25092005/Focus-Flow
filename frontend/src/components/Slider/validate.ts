@@ -1,4 +1,6 @@
-export const is2DMatrix = (matrix: (string | null)[][]): boolean => {
+import type { Item2DMatrix } from "./type"
+
+export const is2DMatrix = (matrix: Item2DMatrix): boolean => {
 
   if(!Array.isArray(matrix)){
     console.error("The 2D matrix must be an array.")

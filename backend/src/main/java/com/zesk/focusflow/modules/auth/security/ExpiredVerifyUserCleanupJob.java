@@ -16,17 +16,18 @@ import java.util.List;
 @RequiredArgsConstructor
 @Component
 public class ExpiredVerifyUserCleanupJob {
-  private final UserRepository userRepository;
   private final VerificationCodeRepository verificationCodeRepository;
-
-  // TODO: Need to refactor about algorithm
+  private final UserRepository userRepository;
   @Scheduled(fixedRate = 600000L)
   public void cleanUpExpiredVerifyUser(){
     List<VerificationCode> expiredList = verificationCodeRepository.findByExpiredAtBefore(LocalDateTime.now());
-    for (VerificationCode expiredItem : expiredList) {
-      User user = expiredItem.getUser();
-      verificationCodeRepository.deleteByUserUserId(user.getUserId());
-      userRepository.deleteByUserId(user.getUserId());
-    }
+    List<User> expiredUsers = expiredList.stream()
+      .map(code -> code.getUser())
+      .filter(user -> !user.isVerified())
+      .distinct()
+      .toList();
+    verificationCodeRepository.deleteAll(expiredList);
+    verificationCodeRepository.flush();
+    userRepository.deleteAll(expiredUsers);
   }
 }

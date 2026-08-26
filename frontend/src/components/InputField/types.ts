@@ -4,7 +4,7 @@ export type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string
   errorText?: string
   children?: ReactNode
-  alwaysShowLabel:boolean,
+  alwaysShowLabel?:boolean,
   containerClassName?: string
 }
 

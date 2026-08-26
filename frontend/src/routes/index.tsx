@@ -5,7 +5,7 @@ import {
 } from "react-router-dom"
 import AuthPage from "../pages/AuthPage"
 import HomePage from "../pages/HomePage"
-import RegisterForm from "../modules/auth/register/RegisterForm"
+import RegisterForm from "../modules/auth/features/register/RegisterForm"
 import UiHost from "../ui/UIHost"
 
 const router = createBrowserRouter([
@@ -27,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <RegisterForm />,
+      },
+      {
+        path: "/verify-account",
+        element: <AuthPage />,
       },
     ],
   },

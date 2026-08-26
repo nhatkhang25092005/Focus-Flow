@@ -41,7 +41,7 @@ public class CookieService {
     
     return Arrays.stream(request.getCookies())
       .filter(cookie -> REFRESH_TOKEN_COOKIE.equals(cookie.getName()))
-      .map(Cookie::getValue)
+      .map(cookie -> cookie.getValue())
       .findFirst();
   }
 

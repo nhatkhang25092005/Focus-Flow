@@ -2,7 +2,6 @@ package com.zesk.focusflow.common.exception;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.apache.coyote.Response;
 import org.jspecify.annotations.NonNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +14,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+  @ExceptionHandler(VerifyException.class)
+  public ResponseEntity<@NonNull ApiErrorResponse> handleVerifyException(VerifyException ex) {
+    return ResponseEntity.status(ex.getStatus())
+      .body(new ApiErrorResponse(false, ex.getCode(), ex.getMessage(), null));
+  }
 
   @ExceptionHandler(UnauthorizeException.class)
   public ResponseEntity<@NonNull ApiErrorResponse> handleUnauthorizeException(UnauthorizeException ex) {

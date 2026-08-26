@@ -39,17 +39,17 @@ const PasswordInput = forwardRef<HTMLInputElement, BaseInputProps>(
         <BaseInput
           ref={ref}
           {...props}
-          className = {
-            cn(
-              "[&::-ms-reveal]:hidden [&::-ms-clear]:hidden",
-              props.className
-            )
-          }
+          className={cn(
+            "[&::-ms-reveal]:hidden [&::-ms-clear]:hidden",
+            props.className,
+          )}
           type={isPasswordVisible ? "text" : "password"}
         />
 
-        <button
-          type="button"
+        {/* Using div instead of button because I don't want this eye button can not
+be tab and focus
+*/}
+        <div
           aria-label={isPasswordVisible ? "Hide password" : "Show password"}
           aria-pressed={isPasswordVisible}
           onClick={() => setIsPasswordVisible((visible) => !visible)}
@@ -58,7 +58,7 @@ const PasswordInput = forwardRef<HTMLInputElement, BaseInputProps>(
             hover:scale-110 active:scale-90"
         >
           <EyeIcon open={isPasswordVisible} />
-        </button>
+        </div>
       </div>
     )
   },

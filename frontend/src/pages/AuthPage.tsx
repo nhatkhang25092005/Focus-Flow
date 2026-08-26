@@ -1,8 +1,12 @@
 import LoginHero from "../modules/auth/components/LoginHero"
-import LoginForm from "../modules/auth/login/LoginForm"
+import LoginForm from "../modules/auth/features/login/LoginForm"
 import { useTranslation } from "react-i18next"
 import Slider from "../components/Slider/Slider"
-import RegisterForm from "../modules/auth/register/RegisterForm"
+import RegisterForm from "../modules/auth/features/register/RegisterForm"
+import VerifyAccountForm from "../modules/auth/features/verify_account/VerifyAccountForm"
+import ForgotRequest from "../modules/auth/features/forgot/ForgotRequest"
+import ForgotVerify from "../modules/auth/features/forgot/ForgotVerify"
+import { useLocation } from "react-router-dom"
 export default function AuthPage() {
   // const { t, i18n } = useTranslation()
   // const changeLanguage = (lng: string) => {
@@ -10,9 +14,13 @@ export default function AuthPage() {
   // }
 
   const item2dMatrix = [
-    ['login', 'register'],
-  ]
+    ['forgot_verify', 'forgot', 'login', 'register', 'verify_account'],
+  ] as const
   const { t } = useTranslation()
+  const { pathname } = useLocation()
+  const firstDisplayItemId = pathname === "/verify-account"
+    ? "verify_account"
+    : "login"
   return (
     <div className="md:flex-row flex h-screen overflow-hidden justify-center">
       <section className="hidden md:flex w-9/13 pt-10 flex-col h-screen z-0">
@@ -37,14 +45,23 @@ export default function AuthPage() {
         </header>
         {/* Adjust the login form layout */}
         <div className="min-h-0 flex-1">
-          <Slider firstDisplayItemId='login' item2DMatrix={item2dMatrix}>
-            <Slider.Slide id="login" navigation={{ right: 'register' }}>
+          <Slider firstDisplayItemId={firstDisplayItemId} item2DMatrix={item2dMatrix}>
+            <Slider.Slide id="login">
               <LoginForm />
             </Slider.Slide>
-            <Slider.Slide id="register" navigation={{ left: 'login' }}>
+            <Slider.Slide id="register">
               <RegisterForm />
             </Slider.Slide>
-          </Slider>
+            <Slider.Slide id="verify_account">
+              <VerifyAccountForm />
+            </Slider.Slide>
+            <Slider.Slide id="forgot">
+              <ForgotRequest />
+            </Slider.Slide>
+            <Slider.Slide id="forgot_verify">
+              <ForgotVerify />
+            </Slider.Slide>
+          </Slider> 
         </div>
 
       </section>

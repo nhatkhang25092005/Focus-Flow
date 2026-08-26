@@ -1,13 +1,29 @@
 package com.zesk.focusflow.database.entity;
 
+import com.zesk.focusflow.enums.VerificationPurpose;
 import jakarta.persistence.*;
+import lombok.Builder;
+
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import lombok.*;
 
+@Builder
 @Entity
-@Table(name = "verification_code")
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(
+  name = "verification_code",
+  uniqueConstraints = {
+    @UniqueConstraint(
+      name = "uk_verification_code_user_purpose",
+      columnNames = {"userId", "purpose"}
+    )
+  }
+)
 public class VerificationCode {
   @Id
   @GeneratedValue(strategy =GenerationType.IDENTITY)
@@ -23,39 +39,16 @@ public class VerificationCode {
   @Column(name = "created_at", nullable = false)
   private LocalDateTime createAt;
 
-  @OneToOne
+  @Builder.Default
+  @Column(name = "failed_attempts", nullable = false)
+  private int failedAttempts = 0;
+
+  @Enumerated(EnumType.STRING)
+  @Builder.Default
+  @Column(name = "purpose", nullable = false, length = 32)
+  private VerificationPurpose purpose = VerificationPurpose.REGISTER;
+
+  @ManyToOne
   @JoinColumn(name = "userId", nullable = false)
   private User user;
-
-
-  public VerificationCode(){}
-
-  public String getCode() {
-    return code;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public LocalDateTime getExpired_at() {
-    return expiredAt;
-  }
-
-  public void setCode(String code) {
-    this.code = code;
-  }
-
-  public void setExpiredAt(LocalDateTime expiredAt) {
-    this.expiredAt = expiredAt;
-  }
-
-  public User getUser() {
-    return user;
-  }
-
-  public void setUser(User user) {
-    this.user = user;
-  }
-
 }

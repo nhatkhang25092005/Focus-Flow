@@ -17,10 +17,10 @@ type ToastDesign = {
     | "ui.toast.warningTitle"
     | "ui.toast.infoTitle"
   icon:
-    | "../../../public/errorIcon.png"
-    | "../../../public/successIcon.png"
-    | "../../../public/warningIcon.png"
-    | "../../../public/infoIcon.png"
+    | "/errorIcon.png"
+    | "/successIcon.png"
+    | "/warningIcon.png"
+    | "/infoIcon.png"
   titleColor:
     "text-red-600" | "text-green-600" | "text-yellow-500" | "text-blue-600"
   borderColor:
@@ -53,7 +53,7 @@ const getToastDesign = (style: ToastStyle): ToastDesign => {
   if (style === "error")
     return {
       title: "ui.toast.errorTitle",
-      icon: "../../../public/errorIcon.png",
+      icon: "/errorIcon.png",
       titleColor: "text-red-600",
       borderColor: "border-red-500",
       spanColor: "bg-red-500",
@@ -61,7 +61,7 @@ const getToastDesign = (style: ToastStyle): ToastDesign => {
   if (style === "success")
     return {
       title: "ui.toast.successTitle",
-      icon: "../../../public/successIcon.png",
+      icon: "/successIcon.png",
       titleColor: "text-green-600",
       borderColor: "border-green-400",
       spanColor: "bg-green-400",
@@ -69,7 +69,7 @@ const getToastDesign = (style: ToastStyle): ToastDesign => {
   if (style === "warning")
     return {
       title: "ui.toast.warningTitle",
-      icon: "../../../public/warningIcon.png",
+      icon: "/warningIcon.png",
       titleColor: "text-yellow-500",
       borderColor: "border-yellow-400",
       spanColor: "bg-yellow-400",
@@ -77,7 +77,7 @@ const getToastDesign = (style: ToastStyle): ToastDesign => {
   else
     return {
       title: "ui.toast.infoTitle",
-      icon: "../../../public/infoIcon.png",
+      icon: "/infoIcon.png",
       titleColor: "text-blue-600",
       borderColor: "border-blue-400",
       spanColor: "bg-blue-400",

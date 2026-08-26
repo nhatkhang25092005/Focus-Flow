@@ -1,14 +1,14 @@
 import { useTranslation } from "react-i18next"
-import InputField from "../../../components/InputField/InputField"
+import InputField from "../../../../components/InputField/InputField"
 import { useLogin } from "./useLogin"
-import Title from "../../../components/text/Title"
-import {useSlider} from '../../../share/context/SliderContext'
-import Subtitle from "../../../components/text/Subtitle"
-import Button from "../../../components/Button"
+import Title from "../../../../components/text/Title"
+import { useSlider } from '../../../../share/context/SliderContext'
+import Subtitle from "../../../../components/text/Subtitle"
+import Button from "../../../../components/Button"
 export default function LoginForm() {
   const { t } = useTranslation()
   const { errors, register, onSubmit } = useLogin()
-  const {goto} = useSlider()
+  const { goto } = useSlider()
   return (
     <>
       <div className="flex flex-col">
@@ -19,7 +19,7 @@ export default function LoginForm() {
         <Subtitle color="secondary" variant="sm" className="mt-2">
           {t("auth.login_form.registration_suggest")}
           <a
-            onClick = {() => goto('right')}
+            onClick={() => goto('register')}
             className="text-blue-500 underline ml-1 cursor-pointer"
           >
             {t("auth.login_form.register_link")}
@@ -53,7 +53,7 @@ export default function LoginForm() {
         {/* Submit Button */}
         <div className="w-full mt-4 flex flex-col items-end">
           <a
-            href="/forgot"
+            onClick={() => goto('forgot')}
             className="text-blue-500 absolute cursor-pointer text-sm underline"
           >
             {t("auth.login_form.forgot_link")}

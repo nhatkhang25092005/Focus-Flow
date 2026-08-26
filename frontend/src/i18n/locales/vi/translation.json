@@ -16,6 +16,16 @@
       "forgot_link": "Quên mật khẩu?",
       "submit_button": "Đăng nhập"
     },
+    "forgot_form": {
+      "title": "Quên mật khẩu",
+      "description": "Nhập địa chỉ email của bạn và chúng tôi sẽ gửi một mã xác minh để đặt lại mật khẩu.",
+      "email_label": "Email",
+      "email_placeholder": "Email",
+      "submit_button": "Gửi mã",
+      "submitting_button": "Đang gửi...",
+      "back_link": "Quay lại đăng nhập",
+      "success_message": "Đã gửi mã đặt lại mật khẩu"
+    },
     "register_form": {
       "title": "Đăng ký",
       "account_suggest": "Đã có tài khoản?",
@@ -37,10 +47,49 @@
       "success_title": "Yêu cầu đăng ký thành công",
       "success_message": "Xác minh email bằng mã chúng tôi đã gửi để chính thức trở thành thành viên của FocusFlow."
     },
+    "verify_account_form": {
+      "title": "Xác minh tài khoản",
+      "description": "Nhập mã gồm sáu chữ số đã được gửi đến email của bạn để hoàn tất đăng ký.",
+      "notice": "Lưu ý, mã này sẽ hết hạn sau 10 phút.",
+      "email_label": "Địa chỉ email",
+      "email_placeholder": "ban@example.com",
+      "code_label": "Mã xác minh",
+      "submit_button": "Xác minh tài khoản",
+      "submitting_button": "Đang xác minh...",
+      "resend_button": "Gửi lại mã",
+      "resending_button": "Đang gửi lại...",
+      "back_prompt": "Bạn đã nhập sai email?",
+      "back_link": "Quay lại đăng nhập",
+      "resend_after": "Gửi lại sau: "
+    },
+    "forgot_verify_form": {
+      "title": "Đặt lại mật khẩu",
+      "description": "Nhập mã xác minh và mật khẩu mới của bạn.",
+      "code_label": "Mã xác minh",
+      "password_label": "Mật khẩu mới",
+      "password_placeholder": "Nhập mật khẩu mới",
+      "confirmed_password_label": "Xác nhận mật khẩu mới",
+      "confirmed_password_placeholder": "Xác nhận mật khẩu mới",
+      "submit_button": "Đặt lại mật khẩu",
+      "submitting_button": "Đang đặt lại...",
+      "back_link": "Quay lại đăng nhập",
+      "success_title": "Đặt lại mật khẩu thành công",
+      "success_message": "Bạn có thể đăng nhập bằng mật khẩu mới của mình.",
+      "resend_button": "Gửi lại mã",
+      "resending_button": "Đang gửi lại...",
+      "resend_after": "Gửi lại sau: ",
+      "notice": "Lưu ý, mã này sẽ hết hạn sau 10 phút."
+    },
+    "verify": {
+      "success_title": "Xác minh tài khoản thành công",
+      "success_message": "Tài khoản của bạn đã sẵn sàng. Bạn có thể đăng nhập ngay.",
+      "resend_success": "Mã xác minh mới đã được gửi đến email của bạn."
+    },
     "error": {
       "login": {
         "invalid_credentials": "Email hoặc Mật khẩu không đúng",
         "invalid_email": "Email không hợp lệ",
+        "not_verified": "Email này chưa được xác minh. Vui lòng xác minh để tiếp tục.",
         "empty_email": "Email không được để trống",
         "empty_password": "Mật khẩu không được để trống",
         "invalid_password_min": "Mật khẩu phải có tối thiểu 8 kí tự",
@@ -49,6 +98,8 @@
       "register": {
         "failed": "Đăng ký thất bại. Vui lòng thử lại.",
         "user_not_verified": "Email này đã được đăng kí nhưng chưa được xác minh.",
+        "user_not_verified_title": "Email chưa được xác minh",
+        "user_not_verified_message": "Email này đã được đăng ký nhưng chưa được xác minh. Vui lòng xác minh email để tiếp tục.",
         "user_already_exists": "Đã có tài khoản sử dụng email này.",
         "validation_failed": "Một số thông tin đăng ký không hợp lệ. Vui lòng kiểm tra và thử lại.",
         "empty_email": "Email không được để trống",
@@ -59,14 +110,34 @@
         "invalid_password_min": "Mật khẩu phải có ít nhất 8 ký tự",
         "invalid_password_max": "Mật khẩu không được vượt quá 64 ký tự",
         "empty_confirmed_password": "Vui lòng xác nhận mật khẩu",
-        "password_mismatch": "Mật khẩu xác nhận không khớp"
+        "password_mismatch": "Mật khẩu xác nhận không khớp",
+        "default_error": "Đã xảy ra lỗi không xác định trong quá trình đăng ký. Vui lòng thử lại."
+      },
+      "verify": {
+        "invalid_code": "Vui lòng nhập mã xác minh gồm 6 chữ số.",
+        "missing_email_title": "Email bị mất",
+        "missing_email_message": "Email của bạn bị mất trong quá trình xác minh. Vui lòng đăng kí lại.",
+        "user_not_found": "Không tìm thấy tài khoản với email này.",
+        "user_verified_before": "Tài khoản này đã được xác minh.",
+        "code_not_matched": "Mã xác minh không chính xác.",
+        "code_expired": "Mã xác minh đã hết hạn.",
+        "too_many_attempts": "Bạn đã thử quá nhiều lần. Vui lòng đăng ký lại.",
+        "resend_email_not_found": "Không tìm thấy tài khoản với email này.",
+        "resend_verified_account": "Tài khoản này đã được xác minh.",
+        "resend_rate_limited": "Vui lòng đợi một phút trước khi yêu cầu mã mới.",
+        "resend_code_expired": "Yêu cầu xác minh đã hết hạn. Vui lòng đăng ký lại.",
+        "resend_code_too_many_requests": "Gửi quá nhiều yêu cầu. Vui lòng đợi một lát trước khi thử lại."
       }
     }
   },
   "ui": {
     "popup": {
       "close_button": "Đóng",
-      "navigate_button": "Tiếp tục"
+      "navigate_button": "Tiếp tục",
+      "ok_button": "OK",
+      "auth_user_not_verified": "Tài khoản này chưa được xác minh",
+      "too_many_requests_title": "Yêu cầu quá nhiều lần.",
+      "verify_fail_too_much": "Mã sai quá nhiều lần."
     },
     "toast": {
       "errorTitle": "Lỗi!",
@@ -76,7 +147,10 @@
     },
     "loading": {
       "login_loading_text": "Đang đăng nhập...",
-      "register_loading_text": "Đang đăng ký..."
+      "register_loading_text": "Đang đăng ký...",
+      "verify_account_loading_text": "Đang xác minh tài khoản...",
+      "resend_verification_code_loading_text": "Đang gửi lại mã xác minh...",
+      "forgot_loading_text": "Đang gửi mã xác minh..."
     }
   },
   "axios": {

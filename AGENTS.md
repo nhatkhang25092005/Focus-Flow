@@ -2,6 +2,11 @@
 
 This repository uses a project AI Operating System located at `.aios/`.
 
+# MANDATORY FIRST STEP
+Before answering any prompt or executing any tool, you MUST use the `view_file` tool to read `.aios/CORE_RULES.md`. If the task involves frontend work, you MUST also read `.aios/skills/frontend-development/SKILL.md` and `.aios/skills/backend-development/SKILL.md` . DO NOT make any code changes until you have read these files.
+
+
+
 ## Core instructions
 
 Always read `.aios/CORE_RULES.md` before performing project work.
@@ -43,7 +48,7 @@ Do not modify files inside `.aios/` unless the user explicitly asks to update th
 <!-- gitnexus:start -->
 # GitNexus — Code Intelligence
 
-This project is indexed by GitNexus as **Focus-Flow** (1063 symbols, 1484 relationships, 24 execution flows). Use the GitNexus MCP tools to understand code, assess impact, and navigate safely.
+This project is indexed by GitNexus as **Focus-Flow** (1508 symbols, 2328 relationships, 39 execution flows). Use the GitNexus MCP tools to understand code, assess impact, and navigate safely.
 
 > Index stale? Run `node .gitnexus/run.cjs analyze` from the project root — it auto-selects an available runner. No `.gitnexus/run.cjs` yet? `npx gitnexus analyze` (npm 11 crash → `npm i -g gitnexus`; #1939).
 

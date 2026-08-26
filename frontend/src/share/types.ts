@@ -8,7 +8,7 @@ export type UserData = {
   avatarUrl?: string
   birthdate?: string
   joinedAt?: string
-  hobbies?: String[]
+  hobbies?: string[]
 }
 
 /**

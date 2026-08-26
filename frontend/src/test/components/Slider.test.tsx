@@ -1,11 +1,11 @@
 import {render, screen, fireEvent} from '@testing-library/react';
 import {describe, expect, it} from 'vitest';
 import Slider from '../../components/Slider/Slider';
-import {useSlider} from '../../components/Slider/Slider';
+import {useSlider} from '../../share/context/SliderContext';
 
-function TestButton({direction}: {direction: 'top' | 'left' | 'bottom' | 'right'}) {
+function TestButton({target}: {target: string}) {
   const {goto} = useSlider();
-  return <button onClick={() => goto(direction)}>Go {direction}</button>;
+  return <button onClick={() => goto(target)}>Go to {target}</button>;
 }
 
 describe('Slider', () => {
@@ -16,19 +16,19 @@ describe('Slider', () => {
     ];
     render(
       <Slider item2DMatrix={matrix} firstDisplayItemId="slide1">
-        <Slider.Slide id="slide1" navigation={{right: "slide2", bottom:'slide3'}}><TestButton direction='right'/><TestButton direction='bottom'/></Slider.Slide>
-        <Slider.Slide id="slide2" navigation={{left: "slide1"}}><TestButton direction='left'/></Slider.Slide>
-        <Slider.Slide id="slide3" navigation={{top: "slide2"}}><TestButton direction='top'/></Slider.Slide>
+        <Slider.Slide id="slide1"><TestButton target='slide2'/><TestButton target='slide3'/></Slider.Slide>
+        <Slider.Slide id="slide2"><TestButton target='slide1'/></Slider.Slide>
+        <Slider.Slide id="slide3"><TestButton target='missing'/></Slider.Slide>
       </Slider>
     );
 
-    const grid = screen.getByText('Go right').parentElement?.parentElement;
+    const grid = screen.getByText('Go to slide2').parentElement?.parentElement;
     expect(grid).toHaveStyle({transform: 'translate(0%, 0%)'});
-    fireEvent.click(screen.getByText('Go right'));
+    fireEvent.click(screen.getByText('Go to slide2'));
     expect(grid).toHaveStyle({transform: 'translate(-100%, 0%)'});
-    fireEvent.click(screen.getByText('Go left'));
+    fireEvent.click(screen.getByText('Go to slide1'));
     expect(grid).toHaveStyle({transform: 'translate(0%, 0%)'});
-    fireEvent.click(screen.getByText('Go bottom'));
+    fireEvent.click(screen.getByText('Go to slide3'));
     expect(grid).toHaveStyle({transform: 'translate(0%, -100%)'});
   })
 })

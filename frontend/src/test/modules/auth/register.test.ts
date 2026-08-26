@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { mapResCode } from "../../../utils/mapResCode"
+import { mapResCode } from "../../../utils/getMessageFromCode"
 
 describe("register response codes", () => {
   it.each([

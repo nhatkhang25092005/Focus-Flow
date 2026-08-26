@@ -26,6 +26,7 @@ const initialUIState: UiState = {
     message: "",
     style: "info",
     visible: false,
+    buttonText:'OK',
   },
 }
 export const uiSlice = createSlice({
@@ -69,8 +70,9 @@ export const uiSlice = createSlice({
       action: PayloadAction<{
         title: string
         message: string
-        style: "success" | "error" | "info" | "navigate"
+        style: "success" | "error" | "info" | "warning"
         navigateTo?: string
+        buttonText?:string
       }>,
     ) {
       state.popup = {
@@ -79,6 +81,7 @@ export const uiSlice = createSlice({
         style: action.payload.style,
         visible: true,
         navigateTo: action.payload.navigateTo,
+        buttonText: action.payload.buttonText || 'OK'
       }
     },
     hidePopup(state) {

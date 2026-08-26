@@ -1,22 +1,33 @@
 import {type ReactNode } from "react"
 import {Slide} from "./Slider"
+export type Item2DMatrix =
+  readonly (readonly (string | null)[])[]
 
-export type Direction = "top" | "left" | "bottom" | "right"
-export type Navigation = Partial<Record<Direction, string>>
-export type SliderProps = {
-  item2DMatrix: (string | null)[][]
+export type SlideId=
+  Exclude<Item2DMatrix[number][number],null>
+
+export type SliderProps  = {
+  item2DMatrix: Item2DMatrix
   animationType?: string
-  firstDisplayItemId: string
+  firstDisplayItemId: SlideId
   children: ReactNode
 }
-export type SlideProps = { id: string; children: ReactNode; navigation?: Navigation }
-export type SliderComponent = {
-  (props: SliderProps): ReactNode
-  Slide: typeof Slide
-}
-export type SlideMapMetadata = {
+export type SlideProps = {
   id: string
+  children: ReactNode
+}
+
+
+export type SlideMapMetadata = {
+  id: SlideId
   component: ReactNode
   position: { x: number; y: number }
-  navigation?: Navigation
+}
+
+export type SliderComponent = {
+  (
+    props: SliderProps
+  ): ReactNode
+
+  Slide: typeof Slide
 }

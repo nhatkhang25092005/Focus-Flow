@@ -16,6 +16,16 @@
       "forgot_link": "Forgot?",
       "submit_button": "Login"
     },
+    "forgot_form": {
+      "title": "Forgot Password",
+      "description": "Enter your email address and we'll send you a verification code to reset your password.",
+      "email_label": "Email",
+      "email_placeholder": "Email",
+      "submit_button": "Send Code",
+      "submitting_button": "Sending...",
+      "back_link": "Back to login",
+      "success_message":"Forgot verification code sent"
+    },
     "register_form": {
       "title": "Register",
       "account_suggest": "Already have an account?",
@@ -37,9 +47,48 @@
       "success_title": "Registration request successful",
       "success_message": "Verify your email using the code we sent to officially become a member of FocusFlow."
     },
+    "verify_account_form": {
+      "title": "Verify your account",
+      "description": "Enter the six-digit code sent to your email to finish creating your account.",
+      "notice": "Note, this code will expire in 10 minutes.",
+      "email_label": "Email address",
+      "email_placeholder": "you@example.com",
+      "code_label": "Verification code",
+      "submit_button": "Verify account",
+      "submitting_button": "Verifying...",
+      "resend_button": "Resend code",
+      "resending_button": "Resending...",
+      "back_prompt": "Entered the wrong email?",
+      "back_link": "Back to sign in",
+      "resend_after": "Resend after:"
+    },
+    "forgot_verify_form": {
+      "title": "Reset Password",
+      "description": "Enter the verification code and your new password.",
+      "code_label": "Verification code",
+      "password_label": "New Password",
+      "password_placeholder": "Enter your new password",
+      "confirmed_password_label": "Confirm New Password",
+      "confirmed_password_placeholder": "Confirm your new password",
+      "submit_button": "Reset Password",
+      "submitting_button": "Resetting...",
+      "back_link": "Back to sign in",
+      "success_title": "Password reset successfully",
+      "success_message": "You can now log in with your new password.",
+      "resend_button": "Resend code",
+      "resending_button": "Resending...",
+      "resend_after": "Resend after:",
+      "notice": "Note, this code will expire in 10 minutes."
+    },
+    "verify": {
+      "success_title": "Account verified",
+      "success_message": "Your account is ready. You can now sign in.",
+      "resend_success": "A new verification code was sent to your email."
+    },
     "error": {
       "login": {
         "invalid_credentials": "Email or Password is incorrect",
+        "not_verified": "This account hasn't been verified. Please verify your email to continue.  ",
         "invalid_email": "Invalid email",
         "empty_email": "Email cannot be empty",
         "empty_password": "Password cannot be empty",
@@ -49,6 +98,8 @@
       "register": {
         "failed": "Registration failed. Please try again.",
         "user_not_verified": "This email has been registered but not verified.",
+        "user_not_verified_title": "Email not verified",
+        "user_not_verified_message": "This email is already registered but has not been verified. Please verify your email to continue.",
         "user_already_exists": "An account with this email already exists.",
         "validation_failed": "Some registration details are invalid. Please review them and try again.",
         "empty_email": "Email cannot be empty",
@@ -59,14 +110,34 @@
         "invalid_password_min": "Password must be at least 8 characters",
         "invalid_password_max": "Password must be no more than 64 characters",
         "empty_confirmed_password": "Please confirm your password",
-        "password_mismatch": "Passwords do not match"
+        "password_mismatch": "Passwords do not match",
+        "default_error": "An unknown error occurred during registration. Please try again."
+      },
+      "verify": {
+        "invalid_code": "Enter the 6-digit verification code.",
+        "missing_email_title": "Email is missing",
+        "missing_email_message": "Your email is missing in verify process. Please register again",
+        "user_not_found": "No account was found for this email.",
+        "user_verified_before": "This account has already been verified.",
+        "code_not_matched": "The verification code is incorrect.",
+        "code_expired": "The verification code has expired.",
+        "too_many_attempts": "Too many failed attempts. Please register again.",
+        "resend_email_not_found": "No account was found for this email.",
+        "resend_verified_account": "This account has already been verified.",
+        "resend_rate_limited": "Please wait one minute before requesting another code.",
+        "resend_code_expired": "The verification request has expired. Please register again.",
+        "resend_code_too_many_requests": "Too many requests. Please wait a moment before trying again."
       }
     }
   },
   "ui": {
     "popup": {
       "close_button": "Close",
-      "navigate_button": "Continue"
+      "navigate_button": "Continue",
+      "ok_button": "OK",
+      "auth_user_not_verified": "This account hasn't been verified",
+      "too_many_requests_title": "Too Many Requests",
+      "verify_fail_too_much": "Too many failed verification attempts"
     },
     "toast": {
       "errorTitle": "Error!",
@@ -76,7 +147,10 @@
     },
     "loading": {
       "login_loading_text": "Logging in...",
-      "register_loading_text": "Registering..."
+      "register_loading_text": "Registering...",
+      "verify_account_loading_text": "Verifying account...",
+      "resend_verification_code_loading_text": "Resending verification code...",
+      "forgot_loading_text": "Sending verification code..."
     }
   },
   "axios": {

@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+
+import com.zesk.focusflow.enums.VerificationPurpose;
+
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -14,23 +17,39 @@ public class EmailService {
   @Value("${spring.mail.username}")
   private String sender;
 
-  public void sendVerificationCode(String to, String code){
+  public void sendVerificationCode(String to, String code, VerificationPurpose purpose) {
     SimpleMailMessage message = new SimpleMailMessage();
 
     message.setFrom(sender);
     message.setTo(to);
-    message.setSubject("FocusFlow Verification code");
 
-    message.setText("""
-      Welcome to FocusFlow!
+    if (purpose == VerificationPurpose.REGISTER) {
+      message.setSubject("FocusFlow Verification code");
 
-      Your verification code is:
+      message.setText("""
+          Welcome to FocusFlow!
 
-      %s
+          Your verification code is:
 
-      This code expires in 10 minutes.
-      """.formatted(code)
-    );
+          %s
+
+          This code expires in 10 minutes.
+          """.formatted(code));
+    }
+
+    else {
+      message.setSubject("FocusFlow Forgot Password code");
+
+      message.setText("""
+          FocusFlow here for assist!
+
+          Your forgot password verification code is:
+
+          %s
+
+          This code expires in 10 minutes.
+          """.formatted(code));
+    }
 
     mailSender.send(message);
   }

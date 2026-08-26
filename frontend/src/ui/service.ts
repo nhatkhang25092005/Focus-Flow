@@ -65,16 +65,30 @@ export const uiService = {
     },
   },
 
-  showPopup: (
-    title: string,
-    message: string,
-    style: "success" | "error" | "info" | "navigate",
-    navigateTo?: string,
-  ) => {
-    store.dispatch(showPopup({ title, message, style, navigateTo }))
-  },
+  /**
+   * Services for popup effect
+   */
+  popup: {
+    showPopup: ({
+      title,
+      message,
+      style,
+      navigateTo,
+      buttonText,
+    }: {
+      title: string
+      message: string
+      style: "success" | "error" | "info" | "warning"
+      navigateTo?: string
+      buttonText?: string
+    }) => {
+      store.dispatch(
+        showPopup({ title, message, style, navigateTo, buttonText }),
+      )
+    },
 
-  hidePopup: () => {
-    store.dispatch(hidePopup())
+    hidePopup: () => {
+      store.dispatch(hidePopup())
+    },
   },
 }

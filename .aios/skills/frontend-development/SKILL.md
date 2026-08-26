@@ -70,6 +70,9 @@ Before working on frontend code:
 - To learn how to use these component properly, take a look at src/ui/component.
 - Do not modify any of these components. If a change is necessary for a specific reason, ask me first before making any changes
 - These component are called through service layer, so other components or hooks can use directly
+- **popup**: Used to display the result or process of API calls that have the most critical effect to the user experience. The popup must be triggered by the user action. You can see how the popup is used in `useVerifyAccount.ts` file in `src/modules/auth/verify_account/` directory
+- **toast**: Used to display the result or process of API calls that have the least critical effect to the user experience. The toast must be triggered by the user action. You can see how the toast is used in `useVerifyAccount.ts` file in `src/modules/auth/verify_account/` directory
+- **loading**: Used to display the result or process of API calls that have the least critical effect to the user experience. The toast must be triggered by the user action. You can see how the toast is used in `useVerifyAccount.ts` file in `src/modules/auth/verify_account/` directory
 
 ### API
 
@@ -90,6 +93,9 @@ Before working on frontend code:
 - Use i18next for user-facing text where the project already supports localization.
 - Avoid introducing hard-coded user-facing strings when a translation key should be used.
 - The language folder is src/i18n/locales
+- Organize translation keys by feature and module. Do not combine unrelated text into a single group.
+- Within each feature, each page, form, or component must have its own nested translation group, such as auth.login_form and auth.forgot_form.
+- Place text in a shared group only when it is genuinely reused across multiple modules.
 
 ## Testing
 
@@ -110,10 +116,14 @@ For each frontend task:
 5. Run relevant tests, linting, and type checking defined by the project.
 6. Review the diff for unnecessary changes.
 7. Report what changed and any remaining concerns.
+8. Reuse the existing UI design, layout, styling, and component patterns from the closest relevant file within the same module. Do not introduce a new design unless explicitly requested.
+9. Always update locales file when adding new text in the application
 
 ## Do Not
 
 - Do not modify backend code.
+- Do not modify the code written by me anywhere
+- Do not remove comments
 - Do not install new dependencies.
 - Do not rewrite unrelated code.
 - Do not change existing architecture only for stylistic preference.
