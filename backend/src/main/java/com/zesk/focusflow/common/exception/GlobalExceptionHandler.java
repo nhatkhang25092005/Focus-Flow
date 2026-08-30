@@ -39,6 +39,12 @@ public class GlobalExceptionHandler {
       .body(new ApiErrorResponse(false, ex.getCode(), ex.getMessage(), null));
   }
 
+  @ExceptionHandler(TaskException.class)
+  public ResponseEntity<@NonNull ApiErrorResponse> handleTaskException(TaskException ex){
+    return ResponseEntity.status(ex.getStatus())
+      .body(new ApiErrorResponse(false, ex.getCode(), ex.getMessage(), null));
+  }
+
   // Validation Failed
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<@NonNull ApiErrorResponse> handleValidationException(

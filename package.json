@@ -1,0 +1,10 @@
+{
+  "name": "focusflow-root",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n \"FRONTEND,BACKEND\" -c \"cyan,yellow\" \"npm --prefix frontend run dev\" \"cd backend && mvn spring-boot:run\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

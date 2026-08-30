@@ -130,6 +130,28 @@
       }
     }
   },
+  "home": {
+    "cards": {
+      "tasks": {
+        "title": "Công việc của tôi",
+        "subtitle": "Hôm nay"
+      },
+      "focus": {
+        "title": "Tập trung",
+        "subtitle": "Công việc hiện tại"
+      },
+      "weekly_focus": {
+        "title": "Thời gian tập trung tuần này",
+        "subtitle": "Tổng thời gian tập trung"
+      }
+    },
+    "greeting": {
+      "morning": "Chào buổi sáng,",
+      "afternoon": "Chào buổi chiều,",
+      "evening": "Chào buổi tối,",
+      "subtitle": "Sẵn sàng tiến thêm một bước?"
+    }
+  },
   "ui": {
     "popup": {
       "close_button": "Đóng",
@@ -162,5 +184,20 @@
     "TOO_MANY_REDIRECTS": "Chuyển hướng quá nhiều lần",
     "INVALID_CONFIG": "Cấu hình không hợp lệ",
     "UNKNOWN_ERROR": "Lỗi không xác định"
+  },
+  "todolist": {
+    "task": {
+      "status": {
+        "todo": "Cần làm",
+        "in_progress": "Đang làm",
+        "done": "Hoàn thành"
+      },
+      "options": {
+        "edit": "Chỉnh sửa",
+        "pin": "Ghim",
+        "add_to_group": "Thêm vào nhóm",
+        "delete": "Xóa"
+      }
+    }
   }
 }

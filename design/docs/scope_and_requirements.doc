@@ -230,6 +230,11 @@ Khoảng cách thời gian giữa lần bấm sắp tới và trước đó nh�
   + Độ dài tối đa 64 kí tự
 - VR-AUTH-03. Confirm Password
   + Phải trùng với password
+- VR-AUTH-04. Verification Code
+  + Không được để trống
+  + Phải bao gồm đúng 6 chữ số
+  + Sẽ hết hạn sau một khoảng thời gian nhất định
+  + Bị hủy sau khi vượt quá số lần nhập sai quy định (ví dụ: 5 lần)
 7.2 Todo Validation
 - VR-TODO-01. Task Name
   + Không được để trống

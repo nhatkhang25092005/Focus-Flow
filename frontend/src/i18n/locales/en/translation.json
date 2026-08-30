@@ -130,6 +130,28 @@
       }
     }
   },
+  "home": {
+    "cards": {
+      "tasks": {
+        "title": "My tasks",
+        "subtitle": "Today"
+      },
+      "focus": {
+        "title": "Focus",
+        "subtitle": "Current task"
+      },
+      "weekly_focus": {
+        "title": "Weekly focus",
+        "subtitle": "Total focus time"
+      }
+    },
+    "greeting": {
+      "morning": "Good morning,",
+      "afternoon": "Good afternoon,",
+      "evening": "Good evening,",
+      "subtitle": "Ready to make progress?"
+    }
+  },
   "ui": {
     "popup": {
       "close_button": "Close",
@@ -162,5 +184,20 @@
     "TOO_MANY_REDIRECTS": "Too many redirects",
     "INVALID_CONFIG": "Invalid config",
     "UNKNOWN_ERROR": "Unknown error"
+  },
+  "todolist": {
+    "task": {
+      "status": {
+        "todo": "To do",
+        "in_progress": "In progress",
+        "done": "Done"
+      },
+      "options": {
+        "edit": "Edit",
+        "pin": "Pin",
+        "add_to_group": "Add to group",
+        "delete": "Delete"
+      }
+    }
   }
 }

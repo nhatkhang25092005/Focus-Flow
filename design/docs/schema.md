@@ -1,138 +1,118 @@
 # Database Schema
 
-## Table: `user`
+This document outlines the database tables based on the backend JPA entities.
+
+## Table: `users`
+Mapped to `User` entity.
 
 | Column Name   | Type         | Constraints / Notes                                   |
 | ------------- | ------------ | ----------------------------------------------------- |
-| id            | BIGINT       | PK, AUTO_INCREMENT                                    |
-| username      | VARCHAR(50)  | NOT NULL                                              |
+| userId        | BIGINT       | PK, AUTO_INCREMENT                                    |
+| username      | VARCHAR(100) | NOT NULL                                              |
 | password_hash | VARCHAR(255) | NOT NULL                                              |
 | avatar_url    | VARCHAR(500) | NULL                                                  |
-| joined_at     | TIMESTAMP    | DEFAULT CURRENT_TIMESTAMP                             |
+| joined_at     | TIMESTAMP    | NOT NULL, DEFAULT CURRENT_TIMESTAMP                   |
 | email         | VARCHAR(255) | UNIQUE, NOT NULL                                      |
-| updated_at    | TIMESTAMP    | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP |
 | birthdate     | DATE         | NULL                                                  |
+| verified      | BOOLEAN      | NOT NULL, DEFAULT FALSE                               |
+
+---
+
+## Table: `verification_code`
+Mapped to `VerificationCode` entity.
+
+| Column Name     | Type         | Constraints / Notes                                         |
+| --------------- | ------------ | ----------------------------------------------------------- |
+| id              | BIGINT       | PK, AUTO_INCREMENT                                          |
+| code            | VARCHAR(8)   | NOT NULL                                                    |
+| expired_at      | TIMESTAMP    | NOT NULL                                                    |
+| created_at      | TIMESTAMP    | NOT NULL, DEFAULT CURRENT_TIMESTAMP                         |
+| failed_attempts | INT          | NOT NULL, DEFAULT 0                                         |
+| purpose         | VARCHAR(32)  | NOT NULL, DEFAULT 'REGISTER'                                |
+| userId          | BIGINT       | FK (users), NOT NULL                                        |
+
+*Note: Unique constraint `uk_verification_code_user_purpose` on `(userId, purpose)`.*
+
+---
+
+## Table: `refresh_tokens`
+Mapped to `RefreshToken` entity.
+
+| Column Name      | Type         | Constraints / Notes                                   |
+| ---------------- | ------------ | ----------------------------------------------------- |
+| refresh_token_id | BIGINT       | PK, AUTO_INCREMENT                                    |
+| user_id          | BIGINT       | FK (users), NOT NULL                                  |
+| token            | VARCHAR(255) | NOT NULL                                              |
+| is_revoked       | BOOLEAN      | NOT NULL                                              |
+| expires_at       | TIMESTAMP    | NOT NULL                                              |
 
 ---
 
 ## Table: `hobbies`
+Mapped to `Hobbies` entity.
 
-| Column Name | Type        | Constraints / Notes      |
-| ----------- | ----------- | ------------------------ |
-| hobby_id    | INT         | PK, AUTO_INCREMENT       |
-| name        | VARCHAR(20) | NOT NULL, UNIQUE         |
+| Column Name | Type         | Constraints / Notes      |
+| ----------- | ------------ | ------------------------ |
+| hobby_id    | BIGINT       | PK, AUTO_INCREMENT       |
+| name        | VARCHAR(255) | NULL                     |
 
 ---
 
 ## Table: `user_hobbies`
+Mapped to `UserHobbies` entity.
 
-| Column Name   | Type   | Constraints / Notes                    |
-| ------------- | ------ | -------------------------------------- |
-| user_hobby_id | BIGINT | PK, AUTO_INCREMENT                     |
-| user_id       | BIGINT | FK → `user.id`, NOT NULL               |
-| hobby_id      | INT    | FK → `hobbies.hobby_id`, NOT NULL      |
+| Column Name | Type   | Constraints / Notes      |
+| ----------- | ------ | ------------------------ |
+| userHobbyId | BIGINT | PK, AUTO_INCREMENT       |
+| user_id     | BIGINT | FK (users), NOT NULL     |
+| hobby_id    | BIGINT | FK (hobbies), NOT NULL   |
 
 ---
 
-## Table: `task_group`
+## Table: `task_groups`
+Mapped to `TaskGroup` entity.
 
 | Column Name | Type         | Constraints / Notes                                   |
 | ----------- | ------------ | ----------------------------------------------------- |
 | group_id    | BIGINT       | PK, AUTO_INCREMENT                                    |
-| user_id     | BIGINT       | FK → `user.id`, NOT NULL                              |
+| user_id     | BIGINT       | FK (users), NOT NULL                                  |
 | group_name  | VARCHAR(100) | NOT NULL                                              |
-| is_pinned   | BOOLEAN      | DEFAULT FALSE                                         |
-| created_at  | TIMESTAMP    | DEFAULT CURRENT_TIMESTAMP                             |
-| updated_at  | TIMESTAMP    | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP |
-| position    | BIGINT       | NOT NULL                                              |
+| is_pinned   | BOOLEAN      | NOT NULL, DEFAULT FALSE                               |
+| created_at  | TIMESTAMP    | NOT NULL, DEFAULT CURRENT_TIMESTAMP                   |
+| updated_at  | TIMESTAMP    | NULL                                                  |
+| position    | BIGINT       | NOT NULL, DEFAULT 1                                   |
 
 ---
 
-## Table: `task`
+## Table: `tasks`
+Mapped to `Task` entity.
 
-| Column Name | Type                              | Constraints / Notes                                   |
-| ----------- | --------------------------------- | ----------------------------------------------------- |
-| task_id     | BIGINT                            | PK, AUTO_INCREMENT                                    |
-| user_id     | BIGINT                            | FK → `user.id`, NOT NULL                              |
-| group_id    | BIGINT                            | FK → `task_group.group_id`, NULL                      |
-| task_name   | VARCHAR(100)                      | NOT NULL                                              |
-| description | VARCHAR(1000)                     | NULL                                                  |
-| status      | ENUM('TODO','IN_PROGRESS','DONE') | DEFAULT 'TODO'                                        |
-| created_at  | TIMESTAMP                         | DEFAULT CURRENT_TIMESTAMP                             |
-| updated_at  | TIMESTAMP                         | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP |
-| done_at     | TIMESTAMP                         | NULL                                                  |
-| is_pinned   | BOOLEAN                           | DEFAULT FALSE                                         |
-| position    | BIGINT                            | NOT NULL                                              |
-
----
-
-## Table: `pomodoro_session`
-
-| Column Name      | Type                                              | Constraints / Notes                                   |
-| ---------------- | ------------------------------------------------- | ----------------------------------------------------- |
-| pomodoro_id      | BIGINT                                            | PK, AUTO_INCREMENT                                    |
-| user_id          | BIGINT                                            | FK → `user.id`, NOT NULL                              |
-| started_at       | TIMESTAMP                                         | NOT NULL                                              |
-| ended_at         | TIMESTAMP                                         | NULL                                                  |
-| duration_seconds | INTEGER                                           | DEFAULT 0, CHECK (`duration_seconds` <= 28800)        |
-| status           | ENUM('RUNNING','COMPLETED','INTERRUPTED','PAUSED') | DEFAULT 'RUNNING'                                     |
-| created_at       | TIMESTAMP                                         | DEFAULT CURRENT_TIMESTAMP                             |
-| updated_at       | TIMESTAMP                                         | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP |
+| Column Name | Type          | Constraints / Notes                                   |
+| ----------- | ------------- | ----------------------------------------------------- |
+| taskId      | BIGINT        | PK, AUTO_INCREMENT                                    |
+| group_id    | BIGINT        | FK (task_groups), NULL                                |
+| user_id     | BIGINT        | FK (users), NOT NULL                                  |
+| status      | VARCHAR(255)  | NOT NULL, DEFAULT 'TODO' (Enum: TaskStatus)           |
+| description | VARCHAR(1000) | NULL                                                  |
+| task_name   | VARCHAR(100)  | NOT NULL                                              |
+| created_at  | TIMESTAMP     | NOT NULL, DEFAULT CURRENT_TIMESTAMP                   |
+| updated_at  | TIMESTAMP     | NULL                                                  |
+| done_at     | TIMESTAMP     | NULL                                                  |
+| position    | BIGINT        | NOT NULL, DEFAULT 1                                   |
+| is_pinned   | BOOLEAN       | NOT NULL, DEFAULT FALSE                               |
 
 ---
 
-## Table: `forgot_password_token`
+## Table: `pomodoro_sessions`
+Mapped to `PomodoroSession` entity.
 
-| Column Name | Type         | Constraints / Notes                         |
-| ----------- | ------------ | ------------------------------------------- |
-| token_id    | BIGINT       | PK, AUTO_INCREMENT                          |
-| user_id     | BIGINT       | FK → `user.id`, NOT NULL                    |
-| token       | VARCHAR(255) | UNIQUE, NOT NULL                            |
-| expired_at  | TIMESTAMP    | NOT NULL                                    |
-| used_at     | TIMESTAMP    | NULL                                        |
-| created_at  | TIMESTAMP    | DEFAULT CURRENT_TIMESTAMP                   |
-
----
-
-## Table: `delete_account_token`
-
-| Column Name | Type         | Constraints / Notes                         |
-| ----------- | ------------ | ------------------------------------------- |
-| token_id    | BIGINT       | PK, AUTO_INCREMENT                          |
-| user_id     | BIGINT       | FK → `user.id`, NOT NULL                    |
-| token       | VARCHAR(255) | UNIQUE, NOT NULL                            |
-| expired_at  | TIMESTAMP    | NOT NULL                                    |
-| used_at     | TIMESTAMP    | NULL                                        |
-| created_at  | TIMESTAMP    | DEFAULT CURRENT_TIMESTAMP                   |
-
----
-
-# Relationships
-
-| Parent Table | Child Table            | Relationship |
-| ------------ | ---------------------- | ------------ |
-| user         | task_group             | 1 → N        |
-| user         | task                   | 1 → N        |
-| user         | pomodoro_session       | 1 → N        |
-| task_group   | task                   | 1 → N        |
-| user         | user_hobbies           | 1 → N        |
-| hobbies      | user_hobbies           | 1 → N        |
-| user         | forgot_password_token  | 1 → N        |
-| user         | delete_account_token   | 1 → N        |
-
----
-
-# Notes
-
-* Một `task` có thể không thuộc `task_group` nào (`group_id` nullable).
-* `position` dùng để sắp xếp task/group trên UI.
-* `is_pinned` dùng để ghim task/group.
-* `done_at` chỉ có giá trị khi task hoàn thành.
-* `duration_seconds` lưu tổng thời gian Pomodoro thực tế.
-* `password_hash` chỉ lưu hash, không lưu mật khẩu thô.
-* Quan hệ giữa `user` và `hobbies` là many-to-many thông qua bảng `user_hobbies`.
-* Không lưu `hobbies` trực tiếp dưới dạng `ENUM` trong bảng `user`.
-* `forgot_password_token` dùng để reset password thông qua email/token xác thực.
-* `delete_account_token` dùng để xác nhận xóa tài khoản an toàn hơn.
-* `used_at` khác `NULL` nghĩa là token đã được sử dụng.
-* `expired_at` dùng để giới hạn thời gian hiệu lực của token.
+| Column Name      | Type         | Constraints / Notes                                   |
+| ---------------- | ------------ | ----------------------------------------------------- |
+| pomodoro_id      | BIGINT       | PK, AUTO_INCREMENT                                    |
+| user_id          | BIGINT       | FK (users), NOT NULL                                  |
+| started_at       | TIMESTAMP    | NOT NULL, DEFAULT CURRENT_TIMESTAMP                   |
+| ended_at         | TIMESTAMP    | NULL                                                  |
+| duration_seconds | BIGINT       | NOT NULL, DEFAULT 0                                   |
+| status           | VARCHAR(255) | NOT NULL (Enum: PomodoroStatus)                       |
+| created_at       | TIMESTAMP    | NOT NULL, DEFAULT CURRENT_TIMESTAMP                   |
+| updated_at       | TIMESTAMP    | NULL                                                  |

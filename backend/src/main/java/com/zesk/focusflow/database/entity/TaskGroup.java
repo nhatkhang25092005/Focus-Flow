@@ -11,8 +11,13 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "task_groups")
+@Getter
+@Setter
 public class TaskGroup {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

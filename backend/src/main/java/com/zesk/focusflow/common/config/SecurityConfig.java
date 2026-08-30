@@ -73,9 +73,11 @@ public class SecurityConfig {
       .csrf(csrf -> csrf.disable())
       .authorizeHttpRequests(auth -> auth
         .requestMatchers(
-          "/api/auth/logout"
+          "/api/auth/logout",
+          "/api/task/create_task"
         ).authenticated()
         .requestMatchers(
+          "/error",
           "/api/auth/login",
           "/api/auth/refresh-token",
           "/api/auth/register",
